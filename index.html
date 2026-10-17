@@ -11,7 +11,7 @@
     --gold-glow: rgba(255, 210, 87, 0.6);
     --coral: #ff6b6b;
     --teal: #4fe3c1;
-    --panel-bg: rgba(15, 18, 38, 0.88);
+    --panel-bg: rgba(15, 18, 38, 0.9);
     --panel-border: rgba(255, 255, 255, 0.16);
   }
   * { box-sizing: border-box; user-select: none; }
@@ -53,6 +53,7 @@
     align-items: flex-start;
     font-variant-numeric: tabular-nums;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.6);
+    z-index: 5;
   }
   .hud-col {
     display: flex;
@@ -61,7 +62,7 @@
   }
   .hud-row {
     display: flex;
-    gap: clamp(12px, 2.2vw, 28px);
+    gap: clamp(12px, 2.2vw, 26px);
     align-items: center;
   }
   .hud-item {
@@ -130,6 +131,23 @@
     border: 1px solid #c26900;
   }
 
+  /* 技能状态胶囊徽章 */
+  #skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1.5px solid rgba(255, 210, 87, 0.5);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: clamp(11px, 1.1vw, 14px);
+    font-weight: 800;
+    color: #ffd257;
+    margin-top: 4px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
   #control-hint {
     position: absolute;
     left: 50%;
@@ -137,13 +155,14 @@
     transform: translateX(-50%);
     font-size: clamp(10px, 0.95vw, 13px);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.65);
-    background: rgba(0, 0, 0, 0.45);
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     padding: 4px 14px;
     border-radius: 20px;
     backdrop-filter: blur(4px);
     pointer-events: none;
     letter-spacing: 0.5px;
+    z-index: 5;
   }
 
   /* ---------- Overlay Cards ---------- */
@@ -152,7 +171,7 @@
     inset: 0;
     display: none;
     place-items: center;
-    background: radial-gradient(800px 500px at 50% 48%, rgba(20, 16, 44, 0.65), rgba(5, 5, 12, 0.92));
+    background: radial-gradient(800px 500px at 50% 48%, rgba(20, 16, 44, 0.7), rgba(5, 5, 12, 0.94));
     backdrop-filter: blur(6px);
     z-index: 20;
     padding: 20px;
@@ -160,12 +179,12 @@
   #overlay.show { display: grid; }
   .card {
     text-align: center;
-    padding: clamp(22px, 3.5vw, 44px) clamp(28px, 4.5vw, 64px);
+    padding: clamp(20px, 3.2vw, 42px) clamp(26px, 4.2vw, 60px);
     border-radius: 24px;
     background: var(--panel-bg);
     border: 1px solid var(--panel-border);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    max-width: min(92%, 640px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    max-width: min(92%, 660px);
     animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
   @keyframes popIn {
@@ -174,7 +193,7 @@
   }
   .card h1 {
     margin: 0 0 0.2em;
-    font-size: clamp(26px, 4.5vw, 48px);
+    font-size: clamp(24px, 4.2vw, 46px);
     font-weight: 900;
     letter-spacing: 0.03em;
     background: linear-gradient(180deg, #ffffff 0%, #ffeaa7 50%, #f39c12 100%);
@@ -185,40 +204,40 @@
   }
   .card h2 {
     margin: 0 0 0.4em;
-    font-size: clamp(20px, 3.2vw, 34px);
+    font-size: clamp(20px, 3vw, 32px);
     color: var(--teal);
     font-weight: 800;
   }
   .card p {
-    margin: 0.5em 0;
-    font-size: clamp(13px, 1.35vw, 16px);
+    margin: 0.45em 0;
+    font-size: clamp(12.5px, 1.3vw, 15.5px);
     line-height: 1.65;
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(255, 255, 255, 0.9);
   }
   .features-pills {
     display: flex;
-    gap: 8px;
+    gap: 7px;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 14px 0;
+    margin: 12px 0;
   }
   .pill {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 0.85em;
+    padding: 3px 11px;
+    font-size: 0.82em;
     font-weight: 600;
     color: #ffd257;
   }
   .keys-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
     gap: 8px;
-    margin: 16px 0 10px;
+    margin: 14px 0 10px;
     text-align: left;
-    background: rgba(0, 0, 0, 0.25);
-    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px 14px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
@@ -226,7 +245,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: clamp(11px, 1.1vw, 14px);
+    font-size: clamp(11px, 1.05vw, 13.5px);
   }
   kbd {
     background: #252a48;
@@ -235,18 +254,17 @@
     border-radius: 6px;
     padding: 2px 7px;
     font: inherit;
-    font-size: 0.88em;
+    font-size: 0.86em;
     font-weight: 800;
     color: #fff;
     min-width: 1.8em;
     text-align: center;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.3);
   }
   .btn-action {
     display: inline-block;
     margin-top: 14px;
     padding: 10px 32px;
-    font-size: clamp(14px, 1.6vw, 18px);
+    font-size: clamp(14px, 1.5vw, 17px);
     font-weight: 800;
     letter-spacing: 1px;
     color: #1a1200;
@@ -263,9 +281,8 @@
   }
   .btn-action:active {
     transform: translateY(1px);
-    box-shadow: 0 3px 10px rgba(243, 156, 18, 0.3);
   }
-  .dim { opacity: 0.65; font-size: 0.9em; }
+  .dim { opacity: 0.65; font-size: 0.88em; }
   .blink { animation: bl 1.1s steps(1, end) infinite; }
   @keyframes bl { 50% { opacity: 0.3; } }
   .score-badge {
@@ -285,7 +302,7 @@
   body.touch-enabled #touch-controls { display: block; }
   .tbtn {
     position: absolute;
-    width: clamp(56px, 11vw, 84px);
+    width: clamp(52px, 10vw, 76px);
     aspect-ratio: 1;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.15);
@@ -293,7 +310,7 @@
     backdrop-filter: blur(8px);
     display: grid;
     place-items: center;
-    font-size: clamp(20px, 3.8vw, 30px);
+    font-size: clamp(18px, 3.4vw, 26px);
     font-weight: 900;
     color: #ffffff;
     pointer-events: auto;
@@ -310,7 +327,7 @@
     bottom: max(16px, env(safe-area-inset-bottom));
   }
   #btn-right {
-    left: calc(max(16px, env(safe-area-inset-left)) + clamp(66px, 13vw, 98px));
+    left: calc(max(16px, env(safe-area-inset-left)) + clamp(62px, 11vw, 86px));
     bottom: max(16px, env(safe-area-inset-bottom));
   }
   #btn-jump {
@@ -318,13 +335,18 @@
     bottom: max(16px, env(safe-area-inset-bottom));
     background: rgba(243, 156, 18, 0.35);
     border-color: rgba(255, 210, 87, 0.6);
-    font-size: clamp(16px, 3vw, 22px);
+  }
+  #btn-skill {
+    right: calc(max(16px, env(safe-area-inset-right)) + clamp(62px, 11vw, 86px));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    background: rgba(231, 76, 60, 0.35);
+    border-color: rgba(255, 118, 117, 0.6);
   }
   #btn-down {
-    right: calc(max(16px, env(safe-area-inset-right)) + clamp(66px, 13vw, 98px));
-    bottom: max(16px, env(safe-area-inset-bottom));
-    font-size: clamp(16px, 3vw, 22px);
+    right: calc(max(16px, env(safe-area-inset-right)) + clamp(31px, 5.5vw, 43px));
+    bottom: calc(max(16px, env(safe-area-inset-bottom)) + clamp(62px, 11vw, 86px));
     background: rgba(79, 227, 193, 0.28);
+    font-size: clamp(14px, 2.6vw, 20px);
   }
 </style>
 </head>
@@ -349,6 +371,7 @@
         </div>
       </div>
       <div id="lives-box"></div>
+      <div id="skill-badge" style="display:none;"></div>
     </div>
     <div class="hud-row">
       <div class="hud-item" style="align-items: center;">
@@ -362,7 +385,7 @@
     </div>
   </div>
 
-  <div id="control-hint">A/D 移动 · W/空格 跳跃 · S 下砸 · P 暂停 · M 静音</div>
+  <div id="control-hint">A/D 移动 · W/空格 跳跃/扑翼 · S 下砸 · J 施展神技 · P 暂停 · M 静音</div>
 
   <div id="overlay" class="show">
     <div class="card" id="card-content"></div>
@@ -372,6 +395,7 @@
     <div class="tbtn" id="btn-left">◀</div>
     <div class="tbtn" id="btn-right">▶</div>
     <div class="tbtn" id="btn-down">▼</div>
+    <div class="tbtn" id="btn-skill">技</div>
     <div class="tbtn" id="btn-jump">跳</div>
   </div>
 </div>
@@ -380,20 +404,24 @@
 "use strict";
 
 /* =====================================================================
-   Pip 与大鹈鹕的冒险 (Pip & Pelican Adventure)
-   全定制高精度单文件马里奥风格平台跳跃游戏
-   主角为可爱的探险家小人骑着动态鹈鹕（拥有待机/跑动/起跳/滑翔/下砸/受伤/欢呼各动作）
-   神秘盒子全新立体雕刻与动态光效，变大形态具备强化速度、超级跳跃、强力踩碎、空中下砸震撼波。
-   3个精美主题关卡（阳光草原、晚霞台地、水晶洞窟），Web Audio API 合成音效与背景音乐。
+   Pip 与大鹈鹕的冒险 (Pip & Pelican Adventure - 豪华进阶版)
+   - 终点宏伟玛丽奥风格终点城堡与升旗礼炮通关盛宴
+   - 丰富怪物生态：管道剪刀怪(Scissor Plant)、死后缩壳踢出的滚壳兽(Shell Beast)、吐烈焰的火蜥蜴(Fire Spitter)
+   - 隐藏砖块 (Hidden Blocks) 敲击揭晓
+   - 奇迹神技花与拟态宝珠：
+       * 鹈鹕大口吞噬 (Gulp & Spit)：生吞怪兽，鼓起大嘴，再次吐出变致命炮弹！
+       * 双翼飓风 (Wing Gust)：巨力扇风，将怪物卷飞并吹聚金币！
+       * 吐火球 (Fireball)：喷吐反弹烈焰火球！
+       * 拟态伪装：变身并拥有所触怪物的独特护甲与本领！
    ===================================================================== */
 
 const TILE = 32, ROWS = 18, VW = 1024, VH = 576;
 
-// 地形类型
-const EMPTY = 0, GROUND = 1, BRICK = 2, QUESTION = 3, USED = 4, PLATFORM = 5, SPIKE = 6, PIPE = 7, PIPETOP = 8;
+// 地形类型：加入隐藏砖块
+const EMPTY = 0, GROUND = 1, BRICK = 2, QUESTION = 3, USED = 4, PLATFORM = 5, SPIKE = 6, PIPE = 7, PIPETOP = 8, HIDDEN_BRICK = 9;
 const SOLID = new Set([GROUND, BRICK, QUESTION, USED, PIPE, PIPETOP]);
 
-// 物理参数（小形态 / 大形态）
+// 物理参数
 const PHYS = {
   small: {
     w: 28, h: 36,
@@ -405,10 +433,10 @@ const PHYS = {
   },
   big: {
     w: 36, h: 48,
-    maxRun: 335,            // 变大后奔跑速度更快！
+    maxRun: 335,
     accGnd: 3300, accAir: 2300,
     fricGnd: 2700, fricAir: 500,
-    jump: 870, jumpCut: 310,  // 变大后跳得更高更有力！
+    jump: 870, jumpCut: 310,
     grav: 2000, maxFall: 1050
   }
 };
@@ -442,8 +470,8 @@ const THEMES = {
     plank: "#c08040", plankDark: "#8a5825",
     pipe: ["#27ae60", "#2ecc71", "#229954", "#196f3d"],
     spike: "#636e72",
-    cloudColor: "rgba(255, 255, 255, 0.85)", cloudN: 8,
-    ambient: "butterflies"
+    castle: { wall: "#95a5a6", wallDark: "#7f8c8d", roof: "#e74c3c", gate: "#2c3e50" },
+    cloudColor: "rgba(255, 255, 255, 0.85)", cloudN: 8
   },
   mesa: {
     name: "晚霞台地",
@@ -460,8 +488,8 @@ const THEMES = {
     plank: "#b36b32", plankDark: "#784218",
     pipe: ["#d35400", "#e67e22", "#ba4a00", "#873600"],
     spike: "#7f8c8d",
-    cloudColor: "rgba(255, 230, 210, 0.5)", cloudN: 6,
-    ambient: "heatHaze"
+    castle: { wall: "#b07d62", wallDark: "#8d5b4c", roof: "#f39c12", gate: "#3d1f14" },
+    cloudColor: "rgba(255, 230, 210, 0.5)", cloudN: 6
   },
   cavern: {
     name: "水晶洞窟",
@@ -478,12 +506,12 @@ const THEMES = {
     plank: "#615285", plankDark: "#413460",
     pipe: ["#16a085", "#1abc9c", "#117a65", "#0e6252"],
     spike: "#9b59b6",
-    cloudColor: "rgba(180, 160, 255, 0.15)", cloudN: 0,
-    ambient: "crystals"
+    castle: { wall: "#34495e", wallDark: "#2c3e50", roof: "#9b59b6", gate: "#1a1a2e" },
+    cloudColor: "rgba(180, 160, 255, 0.15)", cloudN: 0
   }
 };
 
-/* ------------------------------ 音频引擎 ------------------------------ */
+/* ------------------------------ 音频合成引擎 ------------------------------ */
 const AudioSys = {
   ctx: null, master: null, muted: false, ready: false,
   init() {
@@ -524,7 +552,6 @@ const AudioSys = {
     src.start(t0);
   },
 
-  // 经典音效库
   jump(isBig) {
     if (isBig) {
       this.tone(190, 0.22, { type: "square", vol: 0.24, slide: 580 });
@@ -533,16 +560,12 @@ const AudioSys = {
       this.tone(260, 0.17, { type: "square", vol: 0.18, slide: 720 });
     }
   },
-  wingFlap() {
-    this.noise(0.08, { vol: 0.16, hp: 1200 });
-  },
+  wingFlap() { this.noise(0.08, { vol: 0.16, hp: 1200 }); },
   coin() {
     this.tone(988, 0.08, { type: "square", vol: 0.16 });
     this.tone(1319, 0.18, { type: "square", vol: 0.15, delay: 0.07 });
   },
-  bump() {
-    this.tone(140, 0.1, { type: "square", vol: 0.2, slide: 80 });
-  },
+  bump() { this.tone(140, 0.1, { type: "square", vol: 0.2, slide: 80 }); },
   shatter() {
     this.noise(0.25, { vol: 0.35, hp: 800 });
     this.tone(360, 0.15, { type: "square", vol: 0.22, slide: 90 });
@@ -578,7 +601,31 @@ const AudioSys = {
     [523, 659, 784, 1047, 1319, 1047, 1319, 1568, 2093].forEach((f, i) => this.tone(f, 0.26, { type: "triangle", vol: 0.25, delay: i * 0.14 }));
   },
 
-  /* 背景音乐轮循合成 */
+  // 新技能音效
+  gulp() {
+    this.tone(180, 0.2, { type: "sine", vol: 0.35, slide: 380 });
+  },
+  spit() {
+    this.tone(420, 0.12, { type: "square", vol: 0.3, slide: 120 });
+    this.noise(0.08, { vol: 0.25, hp: 800 });
+  },
+  windGust() {
+    this.noise(0.3, { vol: 0.38, hp: 400 });
+  },
+  fireball() {
+    this.noise(0.15, { vol: 0.3, hp: 700 });
+    this.tone(440, 0.1, { type: "sawtooth", vol: 0.25, slide: 220 });
+  },
+  shellKick() {
+    this.tone(280, 0.12, { type: "square", vol: 0.35, slide: 110 });
+    this.noise(0.1, { vol: 0.3, hp: 500 });
+  },
+  firework() {
+    this.noise(0.2, { vol: 0.45, hp: 200 });
+    this.tone(150, 0.18, { type: "triangle", vol: 0.3, slide: 40 });
+  },
+
+  /* 背景音乐 */
   bgm: { on: false, step: 0, next: 0, timer: null, level: 0 },
   musicStart(levelIdx = 0) {
     if (!this.ready || this.bgm.on) return;
@@ -606,18 +653,14 @@ const AudioSys = {
   playMusicStep(t, s, lvl) {
     if (this.muted) return;
     const semi = n => 261.63 * Math.pow(2, n / 12);
-    // 各关卡特色旋律
     let pat, bass;
     if (lvl === 0) {
-      // 阳光明媚的大调旋律
       pat = [0, 4, 7, 12, 7, 4, 0, 7, 2, 5, 9, 14, 9, 5, 2, 9, 0, 4, 7, 12, 7, 4, 0, 7, 5, 9, 12, 16, 12, 9, 5, 11];
       bass = [0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 5, 5, 5, 5];
     } else if (lvl === 1) {
-      // 西部晚霞切分律动
       pat = [0, 3, 7, 10, 7, 3, 0, 7, 5, 8, 12, 15, 12, 8, 5, 10, 0, 3, 7, 10, 7, 3, 0, 7, 3, 7, 10, 14, 10, 7, 3, 10];
       bass = [0, 0, 0, 0, 5, 5, 5, 5, 0, 0, 0, 0, 3, 3, 3, 3];
     } else {
-      // 洞窟神秘律动
       pat = [0, 3, 7, 12, 11, 7, 3, 6, 0, 3, 7, 12, 14, 12, 7, 10, 0, 3, 7, 12, 11, 7, 3, 6, 2, 5, 8, 12, 10, 7, 3, 2];
       bass = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2];
     }
@@ -645,9 +688,9 @@ const AudioSys = {
   }
 };
 
-/* ------------------------------ 输入控制 ------------------------------ */
+/* ------------------------------ 输入系统 ------------------------------ */
 const Input = {
-  left: false, right: false, jump: false, down: false,
+  left: false, right: false, jump: false, down: false, skill: false,
   jumpBuffer: 0, anyPressed: false,
 
   init() {
@@ -657,6 +700,7 @@ const Input = {
       if (k === "ArrowRight" || k === "d" || k === "D") return "right";
       if (k === " " || k === "ArrowUp" || k === "w" || k === "W") return "jump";
       if (k === "ArrowDown" || k === "s" || k === "S") return "down";
+      if (k === "j" || k === "J" || k === "z" || k === "Z" || k === "f" || k === "F" || k === "Shift") return "skill";
       return null;
     };
 
@@ -665,6 +709,7 @@ const Input = {
       if (action) {
         e.preventDefault();
         if (action === "jump" && !this.jump) this.jumpBuffer = JUMP_BUFFER;
+        if (action === "skill" && !this.skill) Game.useSkill();
         this[action] = true;
       }
       this.anyPressed = true;
@@ -682,10 +727,10 @@ const Input = {
     }, { passive: false });
 
     window.addEventListener("blur", () => {
-      this.left = this.right = this.jump = this.down = false;
+      this.left = this.right = this.jump = this.down = this.skill = false;
     });
 
-    // 触摸屏幕绑定
+    // 触摸绑定
     const isTouch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
     if (isTouch) document.body.classList.add("touch-enabled");
 
@@ -696,6 +741,7 @@ const Input = {
         e.preventDefault();
         this.anyPressed = true;
         if (prop === "jump" && !this.jump) this.jumpBuffer = JUMP_BUFFER;
+        if (prop === "skill" && !this.skill) Game.useSkill();
         this[prop] = true;
       };
       const off = e => {
@@ -713,6 +759,7 @@ const Input = {
     bindTouch("btn-right", "right");
     bindTouch("btn-jump", "jump");
     bindTouch("btn-down", "down");
+    bindTouch("btn-skill", "skill");
   }
 };
 
@@ -727,10 +774,13 @@ class LevelData {
     this.entities = [];
     this.platforms = [];
     this.spawn = { x: 3 * TILE, y: (ROWS - 3) * TILE };
-    this.goal = { x: (w - 7) * TILE, y: (ROWS - 3) * TILE };
+    this.goal = { x: (w - 12) * TILE, y: (ROWS - 3) * TILE }; // 旗杆
+    this.castleX = (w - 8) * TILE; // 旗杆后的宏伟城堡
     this.questionContent = new Map();
+    this.hiddenContent = new Map();
     this.bumps = new Map();
     this.flagDrop = 0;
+    this.castleFlag = 0;
   }
   set(x, y, t) {
     if (x >= 0 && x < this.w && y >= 0 && y < this.h) this.tiles[y][x] = t;
@@ -750,11 +800,28 @@ class LevelData {
     this.set(x, y, QUESTION);
     if (content) this.questionContent.set(`${x},${y}`, content);
   }
-  pipe(x, height) {
+  hidden(x, y, content) {
+    this.set(x, y, HIDDEN_BRICK);
+    if (content) this.hiddenContent.set(`${x},${y}`, content);
+  }
+  pipe(x, height, hasScissor = false) {
     const top = ROWS - 2 - height;
     for (let y = top; y <= ROWS - 3; y++) this.set(x, y, y === top ? PIPETOP : PIPE);
     this.set(x + 1, top, PIPETOP);
     for (let y = top; y <= ROWS - 3; y++) this.set(x + 1, y, y === top ? PIPETOP : PIPE);
+    if (hasScissor) {
+      // 管道内隐藏剪刀怪食人花
+      this.entities.push({
+        type: "scissor",
+        x: x * TILE + 8,
+        pipeTopY: top * TILE,
+        y: top * TILE,
+        w: 24, h: 28,
+        state: "hidden",
+        timer: rnd(0.5, 2.0),
+        alive: true
+      });
+    }
   }
   stairs(x0, n, dir = 1) {
     for (let i = 0; i < n; i++) {
@@ -773,8 +840,11 @@ class LevelData {
     }
   }
   enemy(type, x, row) {
-    if (type === "walker") this.entities.push({ type, x: x * TILE + 3, y: row * TILE + 6 });
-    else this.entities.push({ type, x: x * TILE + 16, y: row * TILE + 16 });
+    if (type === "walker" || type === "shell_beast" || type === "spitter") {
+      this.entities.push({ type, x: x * TILE + 3, y: row * TILE + 6, alive: true });
+    } else {
+      this.entities.push({ type, x: x * TILE + 16, y: row * TILE + 16, alive: true });
+    }
   }
   movingPlat(x, y, wTiles, toX, toY, speed) {
     this.platforms.push({
@@ -786,17 +856,16 @@ class LevelData {
 }
 
 function createAllLevels() {
-  /* ------------------- 关卡 1-1：阳光草原 (Sunny Meadow) ------------------- */
-  const L1 = new LevelData(185, "meadow");
-  // 经典地面与跳跃坑洞
-  L1.ground(0, 24);
-  L1.ground(28, 56);
-  L1.ground(60, 75);
-  L1.ground(79, 94);
-  L1.ground(98, 130);
-  L1.ground(134, 184);
+  /* ------------------- 关卡 1-1：阳光草原 ------------------- */
+  const L1 = new LevelData(195, "meadow");
+  L1.ground(0, 26);
+  L1.ground(30, 58);
+  L1.ground(62, 78);
+  L1.ground(82, 102);
+  L1.ground(106, 138);
+  L1.ground(142, 194);
 
-  // 基础教学：问号箱出蘑菇
+  // 基础教学：变大蘑菇
   L1.q(12, 12, "mush");
   L1.coins(8, 10, 12);
   L1.set(16, 12, BRICK);
@@ -804,130 +873,128 @@ function createAllLevels() {
   L1.set(18, 12, BRICK);
   L1.enemy("walker", 22, 15);
 
-  // 管道与飞行敌人
-  L1.pipe(36, 2);
-  L1.pipe(44, 3);
-  L1.enemy("flyer", 40, 8);
-  L1.enemy("walker", 50, 15);
+  // 隐藏砖块：暗藏神技奇迹花！
+  L1.hidden(20, 9, "flower");
 
-  // 平台与金币弧线
-  L1.plat(64, 70, 13);
-  L1.coinArc(64, 11, 7);
-  L1.enemy("walker", 66, 15);
+  // 管道与管道剪刀怪
+  L1.pipe(36, 2, false);
+  L1.pipe(46, 3, true); // 藏有剪刀怪的管道！
+  L1.enemy("flyer", 42, 8);
 
-  // 高空问号箱与星星
-  L1.set(84, 12, BRICK);
-  L1.q(85, 12, "star");
-  L1.set(86, 12, BRICK);
-  L1.enemy("walker", 88, 15);
-  L1.plat(104, 110, 13);
-  L1.coins(104, 110, 11);
+  // 缩成球可滚动的滚壳甲兽！
+  L1.enemy("shell_beast", 52, 15);
 
-  L1.pipe(118, 2);
-  L1.enemy("walker", 124, 15);
-  L1.plat(140, 146, 12);
-  L1.coins(140, 146, 10);
-  L1.enemy("walker", 152, 15);
+  // 平台与金币
+  L1.plat(66, 72, 13);
+  L1.coinArc(66, 11, 7);
+  L1.enemy("walker", 70, 15);
 
-  // 终点台阶与旗杆
-  L1.stairs(162, 5, 1);
-  L1.goal = { x: 176 * TILE, y: (ROWS - 3) * TILE };
+  // 拟态宝珠神秘盒子！
+  L1.set(88, 12, BRICK);
+  L1.q(89, 12, "mimic"); // 拟态球！
+  L1.set(90, 12, BRICK);
+  L1.enemy("shell_beast", 94, 15);
 
-  /* ------------------- 关卡 1-2：晚霞台地 (Sunset Mesa) ------------------- */
-  const L2 = new LevelData(205, "mesa");
+  L1.pipe(112, 3, true);
+  L1.plat(120, 126, 12);
+  L1.hidden(123, 8, "star"); // 隐藏无敌星
+  L1.coins(120, 126, 10);
+  L1.enemy("walker", 132, 15);
+
+  L1.stairs(168, 5, 1);
+  L1.goal = { x: 180 * TILE, y: (ROWS - 3) * TILE };
+  L1.castleX = 184 * TILE;
+
+  /* ------------------- 关卡 1-2：晚霞台地 ------------------- */
+  const L2 = new LevelData(215, "mesa");
   L2.ground(0, 18);
-  L2.ground(22, 38);
-  L2.ground(44, 62);
-  L2.ground(68, 86);
-  L2.ground(92, 110);
-  L2.ground(116, 134);
-  L2.ground(140, 160);
-  L2.ground(166, 204);
+  L2.ground(22, 40);
+  L2.ground(46, 64);
+  L2.ground(70, 90);
+  L2.ground(96, 116);
+  L2.ground(122, 142);
+  L2.ground(148, 170);
+  L2.ground(176, 214);
 
   L2.q(7, 12, "mush");
-  L2.set(8, 12, BRICK);
-  L2.q(9, 12, "coin");
-  L2.enemy("walker", 14, 15);
+  L2.hidden(10, 8, "flower");
+  L2.enemy("shell_beast", 14, 15);
 
-  L2.pipe(28, 2);
-  L2.enemy("flyer", 25, 7);
-  L2.movingPlat(39, 15, 3, 39, 11, 55); // 移动升降梯横跨坑洞
+  L2.pipe(28, 2, true);
+  L2.enemy("spitter", 36, 15); // 喷火火蜥蜴！
 
-  L2.plat(50, 56, 13);
-  L2.coins(50, 56, 11);
-  L2.enemy("walker", 54, 15);
+  L2.movingPlat(41, 15, 3, 41, 11, 55);
+  L2.plat(52, 58, 13);
+  L2.coins(52, 58, 11);
+  L2.enemy("flyer", 55, 7);
 
-  L2.pipe(74, 3);
-  L2.q(79, 12, "star");
-  L2.enemy("walker", 82, 15);
-  L2.enemy("flyer", 86, 8);
+  L2.pipe(76, 3, true);
+  L2.q(81, 12, "flower");
+  L2.enemy("spitter", 86, 15);
 
-  L2.movingPlat(87, 13, 3, 91, 13, 60); // 水平移动平台
-  L2.plat(100, 106, 12);
-  L2.coins(100, 106, 10);
-  L2.enemy("walker", 104, 15);
+  L2.movingPlat(91, 13, 3, 95, 13, 60);
+  L2.plat(104, 110, 12);
+  L2.coins(104, 110, 10);
+  L2.enemy("shell_beast", 108, 15);
 
-  L2.pipe(122, 2);
-  L2.enemy("flyer", 128, 7);
-  L2.plat(146, 152, 13);
-  L2.coins(146, 152, 11);
-  L2.enemy("walker", 154, 15);
+  L2.pipe(126, 2, false);
+  L2.q(132, 12, "mimic");
+  L2.enemy("spitter", 136, 15);
 
-  L2.stairs(178, 6, 1);
-  L2.goal = { x: 196 * TILE, y: (ROWS - 3) * TILE };
+  L2.stairs(186, 6, 1);
+  L2.goal = { x: 200 * TILE, y: (ROWS - 3) * TILE };
+  L2.castleX = 204 * TILE;
 
-  /* ------------------- 关卡 1-3：水晶洞窟 (Crystal Cavern) ------------------- */
-  const L3 = new LevelData(220, "cavern");
+  /* ------------------- 关卡 1-3：水晶洞窟 ------------------- */
+  const L3 = new LevelData(230, "cavern");
   L3.ground(0, 16);
-  L3.ground(22, 36);
-  L3.ground(42, 54);
-  L3.ground(60, 76);
-  L3.ground(82, 98);
-  L3.ground(104, 122);
-  L3.ground(128, 148);
-  L3.ground(154, 178);
-  L3.ground(184, 219);
+  L3.ground(22, 38);
+  L3.ground(44, 56);
+  L3.ground(62, 80);
+  L3.ground(86, 104);
+  L3.ground(110, 130);
+  L3.ground(136, 158);
+  L3.ground(164, 188);
+  L3.ground(194, 229);
 
   L3.q(6, 12, "mush");
-  L3.set(7, 12, BRICK);
-  L3.q(8, 12, "coin");
+  L3.hidden(9, 8, "flower");
   L3.enemy("walker", 12, 15);
 
   L3.plat(18, 20, 13);
-  L3.spikes(26, 28); // 尖刺陷阱
-  L3.coins(26, 28, 12);
-  L3.enemy("walker", 32, 15);
+  L3.spikes(26, 29);
+  L3.coins(26, 29, 11);
+  L3.enemy("spitter", 34, 15);
 
-  L3.movingPlat(37, 15, 3, 37, 11, 55);
-  L3.plat(46, 50, 12);
-  L3.coins(46, 50, 10);
+  L3.movingPlat(39, 15, 3, 39, 11, 55);
+  L3.pipe(48, 2, true);
+  L3.enemy("shell_beast", 52, 15);
 
-  L3.spikes(64, 66);
-  L3.enemy("walker", 70, 15);
-  L3.enemy("flyer", 68, 7);
-  L3.q(86, 12, "star"); // 关键无敌星！冲刺关卡
-  L3.enemy("walker", 90, 15);
+  L3.spikes(68, 71);
+  L3.enemy("spitter", 76, 15);
+  L3.enemy("flyer", 74, 7);
 
-  L3.movingPlat(99, 14, 3, 103, 14, 65);
-  L3.spikes(110, 112);
-  L3.plat(114, 118, 12);
-  L3.coins(114, 118, 10);
-  L3.enemy("walker", 120, 15);
+  L3.hidden(88, 8, "star");
+  L3.q(92, 12, "mimic");
+  L3.movingPlat(105, 14, 3, 109, 14, 65);
 
-  L3.movingPlat(123, 15, 3, 123, 10, 60);
-  L3.spikes(134, 136);
-  L3.enemy("walker", 142, 15);
-  L3.plat(160, 166, 13);
-  L3.coins(160, 166, 11);
-  L3.enemy("flyer", 170, 8);
+  L3.spikes(116, 119);
+  L3.plat(120, 124, 12);
+  L3.coins(120, 124, 10);
+  L3.enemy("shell_beast", 126, 15);
 
-  L3.stairs(192, 6, 1);
-  L3.goal = { x: 212 * TILE, y: (ROWS - 3) * TILE };
+  L3.movingPlat(131, 15, 3, 131, 10, 60);
+  L3.spikes(142, 145);
+  L3.enemy("spitter", 152, 15);
+
+  L3.stairs(202, 6, 1);
+  L3.goal = { x: 216 * TILE, y: (ROWS - 3) * TILE };
+  L3.castleX = 220 * TILE;
 
   return [L1, L2, L3];
 }
 
-/* ------------------------------ 粒子系统 ------------------------------ */
+/* ------------------------------ 粒子与特效 ------------------------------ */
 const particles = [];
 function addParticles(x, y, count, color, speed = 120, life = 0.6, size = 3.5, grav = 450) {
   for (let i = 0; i < count; i++) {
@@ -943,17 +1010,39 @@ function addParticles(x, y, count, color, speed = 120, life = 0.6, size = 3.5, g
     });
   }
 }
-function updateParticles(dt) {
-  for (let i = particles.length - 1; i >= 0; i--) {
-    const p = particles[i];
-    p.life -= dt;
-    if (p.life <= 0) {
-      particles.splice(i, 1);
+
+// 终点过关礼花 (Fireworks)
+const fireworks = [];
+function spawnFirework(x, y) {
+  const colors = ["#ff7675", "#fdcb6e", "#00cec9", "#fd79a8", "#6c5ce7", "#ffeaa7"];
+  const col = colors[Math.floor(Math.random() * colors.length)];
+  for (let i = 0; i < 35; i++) {
+    const angle = rnd(0, 6.28);
+    const spd = rnd(60, 240);
+    fireworks.push({
+      x, y,
+      vx: Math.cos(angle) * spd,
+      vy: Math.sin(angle) * spd,
+      life: rnd(0.7, 1.2),
+      maxLife: 1.2,
+      color: col,
+      size: rnd(3, 5.5)
+    });
+  }
+  AudioSys.firework();
+}
+
+function updateFireworks(dt) {
+  for (let i = fireworks.length - 1; i >= 0; i--) {
+    const fw = fireworks[i];
+    fw.life -= dt;
+    if (fw.life <= 0) {
+      fireworks.splice(i, 1);
       continue;
     }
-    p.vy += p.g * dt;
-    p.x += p.vx * dt;
-    p.y += p.vy * dt;
+    fw.vy += 180 * dt;
+    fw.x += fw.vx * dt;
+    fw.y += fw.vy * dt;
   }
 }
 
@@ -992,15 +1081,21 @@ function updateBrickDebris(dt) {
 // 浮动分数文字
 const floaters = [];
 function showFloatText(x, y, text, color = "#fff", scale = 1) {
-  floaters.push({ x, y, text, color, scale, life: 1.0, maxLife: 1.0 });
+  floaters.push({ x, y, text, color, scale, life: 1.1, maxLife: 1.1 });
 }
 function updateFloaters(dt) {
   for (let i = floaters.length - 1; i >= 0; i--) {
     const f = floaters[i];
     f.life -= dt;
-    f.y -= 40 * dt;
+    f.y -= 38 * dt;
     if (f.life <= 0) floaters.splice(i, 1);
   }
+}
+
+/* ------------------------------ 投掷物与特效弹 ------------------------------ */
+const projectiles = [];
+function addProjectile(type, x, y, vx, vy, extra = {}) {
+  projectiles.push({ type, x, y, vx, vy, w: 18, h: 18, life: 3.5, bounces: 0, ...extra });
 }
 
 /* ------------------------------ 游戏核心状态机 ------------------------------ */
@@ -1012,6 +1107,7 @@ const Game = {
   timeLeft: 300,
   camX: 0, shake: 0, state: "title", stateTimer: 0,
   paused: false, muted: false, lastTime: 0,
+  goalTimer: 0, fireworkTimer: 0,
 
   init() {
     this.cv = document.getElementById("cv");
@@ -1034,7 +1130,10 @@ const Game = {
     this.currentLevel = this.levels[idx];
     this.currentLevel.bumps.clear();
     this.currentLevel.flagDrop = 0;
+    this.currentLevel.castleFlag = 0;
     this.timeLeft = 300;
+    this.goalTimer = 0;
+    this.fireworkTimer = 0;
 
     const pInit = PHYS.small;
     this.player = {
@@ -1050,38 +1149,45 @@ const Game = {
       star: 0,
       dead: false, deadTime: 0,
       big: false,
-      pounding: false, poundStall: 0,  // 下砸状态
+      pounding: false, poundStall: 0,
       ridePlatform: null,
       animCycle: 0,
       blinkTimer: rnd(2, 5),
       blinking: false,
       stompGrace: 0,
       pouchInertia: 0,
-      poleX: 0, slideFrom: 0, landed: false
+      poleX: 0, slideFrom: 0, landed: false,
+      // 豪华技能系统
+      power: null,            // "gulp" (吞噬), "wind" (飓风), "fire" (火球), "mimic" (拟态)
+      swallowedEnemy: null,   // 鹈鹕大嘴里含着的敌人
+      shieldHp: 0             // 拟态吸收的额外护盾
     };
 
     // 重新克隆实体与平台
     this.entities = this.currentLevel.entities.map(e => ({
-      type: e.type,
-      x: e.x, y: e.y,
-      w: e.type === "coin" ? 18 : 28,
-      h: e.type === "coin" ? 18 : 28,
+      ...e,
       ox: e.x, oy: e.y,
-      vx: e.type === "walker" ? -55 : 0,
+      vx: e.type === "walker" ? -55 : (e.type === "shell_beast" ? -50 : 0),
       vy: 0,
-      alive: true,
       t: rnd(0, 6.28),
       squashTimer: 0,
-      anim: 0, turnTimer: 0
+      anim: 0, turnTimer: 0,
+      shellState: "walking", // "walking", "shell_idle", "shell_rolling"
+      spitTimer: rnd(1.0, 2.5),
+      scissorTimer: rnd(0.5, 2.0),
+      scissorH: 0
     }));
 
     this.platforms = this.currentLevel.platforms.map(p => ({ ...p, dx: 0, dy: 0 }));
     this.pops = [];
+    projectiles.length = 0;
     this.camX = 0;
     this.shake = 0;
     particles.length = 0;
     brickDebris.length = 0;
     floaters.length = 0;
+    fireworks.length = 0;
+    this.updateSkillBadge();
 
     if (!silent) {
       this.state = "play";
@@ -1153,18 +1259,21 @@ const Game = {
     AudioSys.musicStop();
     this.showCard(`
       <h1>Pip 与大鹈鹕的冒险</h1>
-      <p style="color:var(--gold); font-weight:700;">经典马里奥风平台跳跃 · 鹈鹕骑士全新登场</p>
+      <p style="color:var(--gold); font-weight:700;">马里奥风全新大作 · 终点城堡 · 神奇神技</p>
       <div class="features-pills">
-        <span class="pill">✨ 骑乘动态鹈鹕</span>
-        <span class="pill">🌟 全新立体神秘盒子</span>
-        <span class="pill">🍄 超级强化形态</span>
-        <span class="pill">💥 空中下砸冲击波</span>
+        <span class="pill">🏰 终点城堡与通关礼炮</span>
+        <span class="pill">✂️ 管道剪刀怪</span>
+        <span class="pill">🐢 缩壳踢击滚壳兽</span>
+        <span class="pill">🔥 烈焰喷吐蜥</span>
+        <span class="pill">👄 鹈鹕大口吞怪</span>
+        <span class="pill">🌀 双翼狂暴飓风</span>
+        <span class="pill">🎭 拟态伪装神技</span>
       </div>
       <div class="keys-grid">
         <div class="key-row"><kbd>A</kbd><kbd>D</kbd><span>移动奔跑</span></div>
         <div class="key-row"><kbd>W</kbd><kbd>空格</kbd><span>跳跃/扑翼</span></div>
         <div class="key-row"><kbd>S</kbd><span>空中下砸冲击波</span></div>
-        <div class="key-row"><kbd>R</kbd><span>重新开始</span></div>
+        <div class="key-row"><kbd>J</kbd><kbd>Z</kbd><span>释放技能/吞吐</span></div>
       </div>
       <button class="btn-action">点击或按任意键出发！</button>
       <p class="dim" style="margin-top:0.8em">历史最高分: <b style="color:var(--gold)">${this.bestScore}</b></p>
@@ -1186,6 +1295,7 @@ const Game = {
     if (this.state === "title") return;
 
     updateParticles(dt);
+    updateFireworks(dt);
     updateBrickDebris(dt);
     updateFloaters(dt);
 
@@ -1197,28 +1307,58 @@ const Game = {
       if (bump.timer <= 0) this.currentLevel.bumps.delete(k);
     }
 
-    // 终点旗杆降落与通关演出
+    // 终点旗杆降落 + 自动走向城堡 + 城堡升旗与漫天礼花盛宴演出
     if (this.state === "levelclear") {
-      this.goalTimer = (this.goalTimer || 0) + dt;
+      this.goalTimer += dt;
       const p = this.player;
       const gy = this.currentLevel.goal.y;
       const poleBottom = gy + 26;
-      const progress = clamp((this.goalTimer - 0.1) / 1.1, 0, 1);
-      const easeVal = progress * progress * (3 - 2 * progress);
-      this.currentLevel.flagDrop = easeVal;
-      p.x = p.poleX;
-      p.y = lerp(p.slideFrom, poleBottom - p.h, easeVal);
-      p.animCycle += dt * 8;
-      p.squash = lerp(p.squash, 0, 1 - Math.pow(0.001, dt));
+      const castleDoorX = this.currentLevel.castleX + 46;
 
-      if (progress >= 1 && !p.landed) {
-        p.landed = true;
-        p.squash = 0.35;
-        this.shake = 0.3;
-        addParticles(p.x + p.w / 2, p.y + p.h, 20, "#ffd257", 180, 0.9, 4.5);
-        AudioSys.coin();
+      if (this.goalTimer < 1.2) {
+        // 阶段 1：沿旗杆平滑滑落
+        const progress = clamp(this.goalTimer / 1.1, 0, 1);
+        const easeVal = progress * progress * (3 - 2 * progress);
+        this.currentLevel.flagDrop = easeVal;
+        p.x = p.poleX;
+        p.y = lerp(p.slideFrom, poleBottom - p.h, easeVal);
+        p.animCycle += dt * 8;
+        if (progress >= 1 && !p.landed) {
+          p.landed = true;
+          p.squash = 0.35;
+          addParticles(p.x + p.w / 2, p.y + p.h, 16, "#ffd257", 160, 0.7, 4);
+          AudioSys.coin();
+        }
+      } else if (this.goalTimer < 3.2) {
+        // 阶段 2：跳下旗杆，昂首阔步走向宏伟城堡！
+        p.onGround = true;
+        p.facing = 1;
+        p.animCycle += dt * 10;
+        p.x += 115 * dt;
+
+        // 进入城堡大门时逐渐隐入城门
+        if (p.x >= castleDoorX) {
+          p.hiddenInCastle = true;
+          // 城堡顶部的胜利旗帜冉冉升起！
+          this.currentLevel.castleFlag = clamp((this.goalTimer - 2.0) / 0.8, 0, 1);
+        }
+
+        // 城堡上空燃放庆典礼花！
+        this.fireworkTimer += dt;
+        if (this.fireworkTimer > 0.32) {
+          this.fireworkTimer = 0;
+          spawnFirework(this.currentLevel.castleX + rnd(10, 80), gy - rnd(90, 170));
+        }
+
+        // 剩余时间换算分数
+        if (this.timeLeft > 0) {
+          this.score += 50;
+          this.timeLeft = Math.max(0, this.timeLeft - dt * 90);
+        }
+      } else if (this.goalTimer > 4.2) {
+        this.nextLevel();
       }
-      if (this.goalTimer > 2.4) this.nextLevel();
+
       this.updateCamera(dt);
       return;
     }
@@ -1254,7 +1394,7 @@ const Game = {
       return;
     }
 
-    // 计时器倒计时
+    // 倒计时
     this.timeLeft -= dt * 0.9;
     if (this.timeLeft <= 0) {
       this.killPlayer();
@@ -1262,6 +1402,7 @@ const Game = {
     }
 
     this.updatePlatforms(dt);
+    this.updateProjectiles(dt);
     this.updateEntities(dt);
     this.updatePlayer(dt);
     this.updateCamera(dt);
@@ -1270,7 +1411,7 @@ const Game = {
       this.killPlayer();
     }
 
-    // 刷新 HUD
+    // HUD 刷新
     document.getElementById("hud-score").textContent = String(this.score).padStart(6, "0");
     document.getElementById("hud-coins").textContent = `x ${String(this.coins).padStart(2, "0")}`;
     document.getElementById("hud-level").textContent = `1-${this.currentLevelIdx + 1}`;
@@ -1294,8 +1435,8 @@ const Game = {
       AudioSys.win();
       AudioSys.musicStop();
       this.showCard(`
-        <h2>🎉 全大关大圆满！</h2>
-        <p>你和你的神勇大鹈鹕成功完成了三段大冒险！</p>
+        <h2>🎉 全大关胜利通关！</h2>
+        <p>你和神勇大鹈鹕成功完成了三重大冒险，征服了所有城堡！</p>
         <div class="score-badge">总得分 <b>${this.score}</b></div>
         <p class="dim">最高纪录: ${this.bestScore}</p>
         <button class="btn-action" onclick="Game.state='title'; Game.showTitle();">凯旋回城</button>
@@ -1305,7 +1446,7 @@ const Game = {
       this.state = "play";
       AudioSys.musicStart(this.currentLevelIdx);
       this.showCard(`
-        <h2>第 1-${this.currentLevelIdx} 关胜利通关！</h2>
+        <h2>第 1-${this.currentLevelIdx} 关城堡占领！</h2>
         <p>前方进入：<b style="color:var(--teal)">${this.currentLevel.theme.name}</b></p>
         <button class="btn-action" onclick="Game.pendingTransition=false; Game.hideOverlay();">继续前进</button>
       `);
@@ -1319,6 +1460,82 @@ const Game = {
       try {
         localStorage.setItem("pip_pelican_best", String(this.bestScore));
       } catch (e) {}
+    }
+  },
+
+  /* ------------------------------ 释放神技系统 ------------------------------ */
+  useSkill() {
+    const p = this.player;
+    if (!p || p.dead || this.state !== "play") return;
+
+    // 1. 鹈鹕大口吞噬 / 吐出技能
+    if (p.power === "gulp") {
+      if (p.swallowedEnemy) {
+        // 嘴里有怪：猛烈喷吐出高能炮弹！
+        AudioSys.spit();
+        p.squash = -0.4;
+        addProjectile("spit_egg", p.x + (p.facing > 0 ? p.w + 10 : -14), p.y + p.h / 2 - 8, p.facing * 520, -120);
+        showFloatText(p.x, p.y - 25, "巨喉喷射！", "#ffd257", 1.2);
+        p.swallowedEnemy = null;
+        this.updateSkillBadge();
+      } else {
+        // 张开大嘴扑吞前方敌人
+        AudioSys.gulp();
+        p.squash = 0.35;
+        p.pouchInertia = 1.0;
+        // 判定前方扇形范围内的怪
+        const reachX = p.facing > 0 ? p.x + p.w : p.x - 45;
+        const box = { x: reachX, y: p.y - 6, w: 45, h: p.h + 12 };
+        for (const e of this.entities) {
+          if (e.alive && (e.type === "walker" || e.type === "shell_beast" || e.type === "spitter" || e.type === "flyer")) {
+            if (this.checkAABB(box, e)) {
+              e.alive = false;
+              p.swallowedEnemy = e.type;
+              showFloatText(p.x, p.y - 25, "含入口中！按 [J] 喷吐！", "#4fe3c1", 1.2);
+              addParticles(e.x + 10, e.y + 10, 14, "#ffeaa7", 120, 0.5, 4);
+              this.updateSkillBadge();
+              break;
+            }
+          }
+        }
+      }
+    }
+    // 2. 双翼狂暴飓风
+    else if (p.power === "wind") {
+      AudioSys.windGust();
+      p.squash = -0.3;
+      addProjectile("tornado", p.x + (p.facing > 0 ? p.w + 5 : -25), p.y + p.h / 2 - 16, p.facing * 420, 0);
+      showFloatText(p.x, p.y - 25, "双翼狂风！", "#74b9ff", 1.2);
+    }
+    // 3. 喷吐烈焰火球
+    else if (p.power === "fire") {
+      AudioSys.fireball();
+      p.squash = -0.25;
+      addProjectile("player_fire", p.x + (p.facing > 0 ? p.w + 4 : -14), p.y + p.h / 2 - 6, p.facing * 380, 120);
+    }
+  },
+
+  updateSkillBadge() {
+    const badge = document.getElementById("skill-badge");
+    if (!badge) return;
+    const p = this.player;
+    if (!p || !p.power) {
+      badge.style.display = "none";
+      return;
+    }
+    badge.style.display = "inline-flex";
+    if (p.power === "gulp") {
+      badge.innerHTML = p.swallowedEnemy ? "👄 嘴含怪兽！按 [J] 吐出" : "👄 鹈鹕大口吞噬 (按 J)";
+      badge.style.borderColor = "#ffd257";
+    } else if (p.power === "wind") {
+      badge.innerHTML = "🌀 双翼飓风 (按 J)";
+      badge.style.borderColor = "#74b9ff";
+    } else if (p.power === "fire") {
+      badge.innerHTML = "🔥 烈焰吐珠 (按 J)";
+      badge.style.borderColor = "#ff7675";
+    } else if (p.power === "mimic") {
+      badge.innerHTML = `🎭 拟态伪装 ${p.shieldHp > 0 ? '(护甲 x' + p.shieldHp + ')' : '(触怪吸灵)'}`;
+      badge.style.borderColor = "#a29bfe";
     }
   },
 
@@ -1353,13 +1570,21 @@ const Game = {
     p.squash = -0.35;
     this.score += 1000;
     AudioSys.grow();
-    showFloatText(p.x + p.w / 2, p.y - 25, "超级鹈鹕形态！", "#4fe3c1", 1.3);
+    showFloatText(p.x + p.w / 2, p.y - 25, "超级鹈鹕骑士形态！", "#4fe3c1", 1.3);
     addParticles(p.x + p.w / 2, p.y + p.h / 2, 24, "#ffd257", 200, 1.0, 5);
     return true;
   },
 
   shrinkPlayer() {
     const p = this.player;
+    if (p.shieldHp > 0) {
+      p.shieldHp--;
+      p.invuln = 1.8;
+      AudioSys.hurt();
+      showFloatText(p.x, p.y - 25, "护甲抵挡伤害！", "#ffeaa7");
+      this.updateSkillBadge();
+      return;
+    }
     if (!p.big) return;
     const sW = PHYS.small.w, sH = PHYS.small.h;
     p.big = false;
@@ -1377,7 +1602,6 @@ const Game = {
   /* ------------------------------ 摄像机 ------------------------------ */
   updateCamera(dt) {
     const p = this.player;
-    // 带有微量前瞻的平滑摄像机
     const lookAhead = p.facing * 40;
     const target = clamp(p.x + p.w / 2 + lookAhead - VW * 0.44, 0, this.currentLevel.w * TILE - VW);
     this.camX = lerp(this.camX, target, 1 - Math.pow(0.001, dt));
@@ -1396,6 +1620,66 @@ const Game = {
     }
   },
 
+  /* ------------------------------ 投掷物更新 ------------------------------ */
+  updateProjectiles(dt) {
+    for (let i = projectiles.length - 1; i >= 0; i--) {
+      const proj = projectiles[i];
+      proj.life -= dt;
+      if (proj.life <= 0) {
+        projectiles.splice(i, 1);
+        continue;
+      }
+
+      proj.x += proj.vx * dt;
+      proj.y += proj.vy * dt;
+
+      // 玩家火球反弹机制
+      if (proj.type === "player_fire") {
+        proj.vy += 1200 * dt;
+        const tx = Math.floor(proj.x / TILE);
+        const ty = Math.floor((proj.y + proj.h) / TILE);
+        if (SOLID.has(this.currentLevel.get(tx, ty))) {
+          proj.y = ty * TILE - proj.h;
+          proj.vy = -260; // 弹跳
+          addParticles(proj.x, proj.y + proj.h, 3, "#e17055", 60, 0.2, 2.5);
+        }
+      }
+
+      // 吐出的蛋形怪兽炮弹
+      if (proj.type === "spit_egg") {
+        proj.vy += 1000 * dt;
+        addParticles(proj.x, proj.y, 1, "#ffeaa7", 40, 0.2, 2.5);
+      }
+
+      // 判定命中敌人
+      if (proj.type === "player_fire" || proj.type === "spit_egg" || proj.type === "tornado") {
+        for (const e of this.entities) {
+          if (e.alive && (e.type === "walker" || e.type === "shell_beast" || e.type === "spitter" || e.type === "flyer" || e.type === "scissor")) {
+            if (this.checkAABB(proj, e)) {
+              e.alive = false;
+              e.squashTimer = 0.01;
+              this.score += 250;
+              showFloatText(e.x, e.y - 20, "击败! +250", "#ffd257");
+              addParticles(e.x, e.y, 16, "#e74c3c", 160, 0.6, 4);
+              AudioSys.stomp();
+              if (proj.type === "player_fire") {
+                projectiles.splice(i, 1);
+                break;
+              }
+            }
+          }
+        }
+      }
+      // 敌方吐出的火球命中玩家
+      else if (proj.type === "enemy_fire") {
+        if (this.checkAABB(proj, this.player)) {
+          this.hurtPlayer();
+          projectiles.splice(i, 1);
+        }
+      }
+    }
+  },
+
   /* ------------------------------ 玩家运动物理 ------------------------------ */
   updatePlayer(dt) {
     const p = this.player;
@@ -1403,6 +1687,7 @@ const Game = {
 
     if (p.invuln > 0) p.invuln -= dt;
     if (p.stompGrace > 0) p.stompGrace -= dt;
+    if (p.pouchInertia > 0) p.pouchInertia -= dt * 2.5;
     if (p.star > 0) {
       p.star -= dt;
       if (p.star <= 0) showFloatText(p.x, p.y - 35, "无敌结束", "#ffd257");
@@ -1410,10 +1695,10 @@ const Game = {
 
     const curPhys = p.big ? PHYS.big : PHYS.small;
 
-    // 空中下砸（Ground Pound）判定：在空中按 S / Down
+    // 空中下砸
     if (!p.onGround && Input.down && !p.pounding && p.vy > -100) {
       p.pounding = true;
-      p.poundStall = 0.16; // 滞空蓄力准备下砸
+      p.poundStall = 0.16;
       p.vx = 0; p.vy = 0;
       AudioSys.wingFlap();
       addParticles(p.x + p.w / 2, p.y + p.h / 2, 10, "#ffffff", 120, 0.3, 3);
@@ -1425,9 +1710,8 @@ const Game = {
         p.vx = 0; p.vy = 0;
         return;
       }
-      p.vy = 950; // 急速下砸
+      p.vy = 950;
     } else {
-      // 正常水平运动控制
       const dir = (Input.right ? 1 : 0) - (Input.left ? 1 : 0);
       const acc = p.onGround ? curPhys.accGnd : curPhys.accAir;
       const fric = p.onGround ? curPhys.fricGnd : curPhys.fricAir;
@@ -1443,7 +1727,6 @@ const Game = {
       }
       p.vx = clamp(p.vx, -speedCap, speedCap);
 
-      // 起跳 / 土狼时间 / 跳跃缓冲
       if (p.onGround) p.coyote = COYOTE_TIME;
       else p.coyote -= dt;
 
@@ -1460,17 +1743,14 @@ const Game = {
         addParticles(p.x + p.w / 2, p.y + p.h, 8, "rgba(255,255,255,0.7)", 90, 0.4, 3);
       }
 
-      // 松开跳跃减小升速
       if (!Input.jump && p.vy < -curPhys.jumpCut) {
         p.vy = -curPhys.jumpCut;
       }
 
-      // 重力加速
       p.vy += curPhys.grav * dt;
       if (p.vy > curPhys.maxFall) p.vy = curPhys.maxFall;
     }
 
-    // 继承站在移动平台上的位移
     if (p.ridePlatform && p.ridePlatform.dx !== undefined) {
       p.x += p.ridePlatform.dx;
       p.y += p.ridePlatform.dy;
@@ -1481,7 +1761,6 @@ const Game = {
     this.movePlayerX(p, dt);
     this.movePlayerY(p, dt);
 
-    // 动画周期
     p.animCycle += (p.onGround && Math.abs(p.vx) > 15) ? (dt * Math.abs(p.vx) / 16) : (dt * 3);
     p.blinkTimer -= dt;
     if (p.blinkTimer <= 0) {
@@ -1490,10 +1769,9 @@ const Game = {
       setTimeout(() => { if (this.player) this.player.blinking = false; }, 140);
     }
 
-    // 碰撞物品与敌人
     this.hitEntities(p);
 
-    // 到达终点判定
+    // 终点旗杆判定
     const gx = this.currentLevel.goal.x + 8;
     const gy = this.currentLevel.goal.y;
     if (p.x + p.w > gx - 10 && p.x < gx + 36 && p.y + p.h > gy - 130) {
@@ -1506,6 +1784,7 @@ const Game = {
       p.x = p.poleX;
       p.slideFrom = p.y;
       p.landed = false;
+      p.hiddenInCastle = false;
       this.score += 500;
       AudioSys.clear();
       AudioSys.musicStop();
@@ -1571,15 +1850,13 @@ const Game = {
         if (!wasGnd) {
           p.squash = 0.35;
           addParticles(p.x + p.w / 2, p.y + p.h, 6, "rgba(255,255,255,0.6)", 100, 0.35, 3);
-          // 若是下砸落地
           if (p.pounding) {
             p.pounding = false;
             this.shake = 0.55;
             AudioSys.groundPound();
             addParticles(p.x + p.w / 2, p.y + p.h, 28, "#ffd257", 220, 0.6, 5);
-            // 震晕/消灭附近地面敌人
             for (const e of this.entities) {
-              if (e.alive && (e.type === "walker") && Math.abs(e.x - (p.x + p.w / 2)) < 110 && Math.abs(e.y - p.y) < 60) {
+              if (e.alive && (e.type === "walker" || e.type === "shell_beast") && Math.abs(e.x - (p.x + p.w / 2)) < 110 && Math.abs(e.y - p.y) < 60) {
                 e.squashTimer = 0.3;
                 e.alive = false;
                 this.score += 200;
@@ -1592,7 +1869,6 @@ const Game = {
         break;
       }
 
-      // 踩移动平台
       for (const pl of this.platforms) {
         if (p.x + p.w > pl.x + 2 && p.x < pl.x + pl.w - 2 && prevBottom <= pl.y + 6 && p.y + p.h >= pl.y) {
           p.y = pl.y - p.h;
@@ -1606,7 +1882,8 @@ const Game = {
       const ty = Math.floor(p.y / TILE);
       let hitX = -1, minDistance = 9999;
       for (let x = x0; x <= x1; x++) {
-        if (SOLID.has(this.currentLevel.get(x, ty))) {
+        const tileType = this.currentLevel.get(x, ty);
+        if (SOLID.has(tileType) || tileType === HIDDEN_BRICK) {
           const dist = Math.abs((x * TILE + 16) - (p.x + p.w / 2));
           if (dist < minDistance) {
             minDistance = dist;
@@ -1621,7 +1898,6 @@ const Game = {
       }
     }
 
-    // 尖刺碰撞判定
     if (this.state === "play") {
       const cy = Math.floor((p.y + p.h - 6) / TILE);
       for (let x = x0; x <= x1; x++) {
@@ -1637,24 +1913,36 @@ const Game = {
     return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
   },
 
-  /* ------------------------------ 顶方块处理 ------------------------------ */
+  /* ------------------------------ 顶方块与隐藏砖块 ------------------------------ */
   hitHeadBlock(tx, ty) {
     const t = this.currentLevel.get(tx, ty);
     const p = this.player;
 
-    if (t === QUESTION) {
-      // 问号箱变为已使用金属块
+    // 1. 隐藏砖块：撞碎或揭示
+    if (t === HIDDEN_BRICK) {
       this.currentLevel.set(tx, ty, USED);
       this.currentLevel.bumps.set(`${tx},${ty}`, { timer: 0.22, power: 1.0 });
+      AudioSys.bump();
+      AudioSys.powerupAppear();
+      addParticles(tx * TILE + 16, ty * TILE + 8, 20, "#ffd257", 180, 0.7, 4.5);
+      showFloatText(tx * TILE + 16, ty * TILE - 20, "发现隐藏砖块！", "#4fe3c1", 1.2);
+      const content = this.currentLevel.hiddenContent.get(`${tx},${ty}`) || "flower";
+      this.spawnBlockPop(tx, ty, content);
+      return;
+    }
 
-      // 金色爆发光效
+    // 2. 问号箱
+    if (t === QUESTION) {
+      this.currentLevel.set(tx, ty, USED);
+      this.currentLevel.bumps.set(`${tx},${ty}`, { timer: 0.22, power: 1.0 });
       addParticles(tx * TILE + 16, ty * TILE + 8, 14, "#ffeaa7", 140, 0.5, 4);
 
-      const content = this.currentLevel.questionContent.get(`${tx},${ty}`) || (p.big ? "coin" : "mush");
+      const content = this.currentLevel.questionContent.get(`${tx},${ty}`) || (p.big ? "flower" : "mush");
       this.spawnBlockPop(tx, ty, content);
       AudioSys.bump();
-    } else if (t === BRICK) {
-      // 变大形态下直接粉碎砖块！小形态只顶起
+    }
+    // 3. 普通砖块
+    else if (t === BRICK) {
       if (p.big || p.star > 0) {
         this.currentLevel.set(tx, ty, EMPTY);
         spawnBrickShatter(tx * TILE + 16, ty * TILE + 16, this.currentLevel.theme.brick, this.currentLevel.theme.brickLine);
@@ -1692,7 +1980,6 @@ const Game = {
         addParticles(pop.x, pop.y, 8, "#ffd257", 100, 0.5, 3.5);
         this.pops.splice(i, 1);
       } else {
-        // 蘑菇或星星冒出后激活实体
         this.entities.push({
           type: pop.kind,
           x: pop.x - 13, y: pop.y - 4,
@@ -1719,7 +2006,87 @@ const Game = {
 
       if (e.type === "coin") continue;
 
-      if (e.type === "mush" || e.type === "star") {
+      // 1. 管道剪刀怪 (Scissor Plant)
+      if (e.type === "scissor") {
+        e.scissorTimer -= dt;
+        const distToPlayer = Math.abs((p.x + p.w / 2) - (e.x + 12));
+        // 如果玩家离管口太近，剪刀怪暂避不出
+        if (distToPlayer < 42 && e.state === "hidden") {
+          e.scissorTimer = 0.5;
+        }
+
+        if (e.state === "hidden") {
+          if (e.scissorTimer <= 0) {
+            e.state = "rising";
+            e.scissorTimer = 1.0;
+          }
+        } else if (e.state === "rising") {
+          e.scissorH = Math.min(32, e.scissorH + dt * 70);
+          e.y = e.pipeTopY - e.scissorH;
+          if (e.scissorH >= 32) {
+            e.state = "snapping";
+            e.scissorTimer = 1.2;
+          }
+        } else if (e.state === "snapping") {
+          e.anim += dt * 14; // 疯狂咬牙合拢
+          if (e.scissorTimer <= 0) {
+            e.state = "descending";
+          }
+        } else if (e.state === "descending") {
+          e.scissorH = Math.max(0, e.scissorH - dt * 70);
+          e.y = e.pipeTopY - e.scissorH;
+          if (e.scissorH <= 0) {
+            e.state = "hidden";
+            e.scissorTimer = rnd(1.5, 3.0);
+          }
+        }
+        continue;
+      }
+
+      // 2. 滚壳兽 (Shell Beast)
+      if (e.type === "shell_beast") {
+        if (e.shellState === "shell_rolling") {
+          e.x += e.vx * dt;
+          e.anim += Math.abs(e.vx) * dt * 0.1;
+          const tx = Math.floor((e.vx > 0 ? e.x + e.w : e.x) / TILE);
+          const ty = Math.floor((e.y + e.h / 2) / TILE);
+          if (SOLID.has(this.currentLevel.get(tx, ty))) {
+            e.vx *= -1; // 撞墙猛烈反弹！
+            AudioSys.shellKick();
+            this.shake = 0.18;
+          }
+          // 滚壳撞飞路上其他怪物！
+          for (const other of this.entities) {
+            if (other !== e && other.alive && (other.type === "walker" || other.type === "spitter" || other.type === "flyer")) {
+              if (this.checkAABB(e, other)) {
+                other.alive = false;
+                other.squashTimer = 0.01;
+                this.score += 300;
+                showFloatText(other.x, other.y - 20, "扫荡! +300", "#ffd257");
+                addParticles(other.x, other.y, 14, "#ffffff", 140, 0.5, 4);
+                AudioSys.stomp();
+              }
+            }
+          }
+          continue;
+        } else if (e.shellState === "shell_idle") {
+          continue;
+        }
+      }
+
+      // 3. 喷火火蜥蜴 (Fire Spitter)
+      if (e.type === "spitter") {
+        e.spitTimer -= dt;
+        if (e.spitTimer <= 0) {
+          e.spitTimer = rnd(2.4, 3.6);
+          const dir = p.x < e.x ? -1 : 1;
+          addProjectile("enemy_fire", e.x + (dir > 0 ? 24 : -8), e.y + 4, dir * 180, -60);
+          AudioSys.fireball();
+        }
+      }
+
+      // 4. 道具：变大蘑菇、星星、技能花、拟态球
+      if (e.type === "mush" || e.type === "star" || e.type === "flower" || e.type === "mimic") {
         e.vy += 1900 * dt;
         if (e.vy > 900) e.vy = 900;
         e.x += e.vx * dt;
@@ -1757,7 +2124,8 @@ const Game = {
         continue;
       }
 
-      if (e.type === "walker") {
+      // 5. 地面行走小怪
+      if (e.type === "walker" || e.type === "shell_beast" || e.type === "spitter") {
         if (e.squashTimer > 0) {
           e.squashTimer -= dt;
           if (e.squashTimer <= 0) e.alive = false;
@@ -1800,7 +2168,6 @@ const Game = {
               e.y = ty * TILE - e.h; e.vy = 0; landed = true; break;
             }
           }
-          // 悬崖掉头
           if (landed) {
             const lookX = Math.floor((e.x + (e.vx > 0 ? e.w + 4 : -4)) / TILE);
             const lookY = Math.floor((e.y + e.h + 4) / TILE);
@@ -1813,6 +2180,7 @@ const Game = {
         continue;
       }
 
+      // 6. 飞行小怪
       if (e.type === "flyer") {
         if (e.squashTimer > 0) {
           e.squashTimer -= dt;
@@ -1837,6 +2205,7 @@ const Game = {
     for (const e of this.entities) {
       if (!e.alive) continue;
 
+      // 金币拾取
       if (e.type === "coin") {
         if (this.checkAABB(p, { x: e.x - 12, y: e.y - 12, w: 24, h: 24 })) {
           e.alive = false;
@@ -1854,6 +2223,7 @@ const Game = {
         continue;
       }
 
+      // 变大蘑菇
       if (e.type === "mush") {
         if (this.checkAABB(p, e)) {
           e.alive = false;
@@ -1863,6 +2233,38 @@ const Game = {
         continue;
       }
 
+      // 神技奇迹花：随机赋予神技！
+      if (e.type === "flower") {
+        if (this.checkAABB(p, e)) {
+          e.alive = false;
+          const skills = ["gulp", "wind", "fire"];
+          p.power = skills[Math.floor(Math.random() * skills.length)];
+          this.score += 800;
+          AudioSys.grow();
+          addParticles(e.x + 13, e.y + 13, 24, "#00cec9", 180, 0.9, 4.5);
+          const skillNames = { gulp: "鹈鹕巨喉吞噬！", wind: "双翼狂暴飓风！", fire: "烈焰吐火球！" };
+          showFloatText(e.x - 20, e.y - 25, `习得：${skillNames[p.power]} 按 [J] 施展`, "#ffd257", 1.3);
+          this.updateSkillBadge();
+        }
+        continue;
+      }
+
+      // 拟态宝珠：伪装变身下一个碰到的怪！
+      if (e.type === "mimic") {
+        if (this.checkAABB(p, e)) {
+          e.alive = false;
+          p.power = "mimic";
+          p.shieldHp = 1;
+          this.score += 1000;
+          AudioSys.grow();
+          addParticles(e.x + 13, e.y + 13, 26, "#a29bfe", 190, 0.9, 5);
+          showFloatText(e.x - 20, e.y - 25, "拟态附体！触碰下一个敌人吸收其能力！", "#a29bfe", 1.3);
+          this.updateSkillBadge();
+        }
+        continue;
+      }
+
+      // 无敌星星
       if (e.type === "star") {
         if (this.checkAABB(p, e)) {
           e.alive = false;
@@ -1875,14 +2277,50 @@ const Game = {
         continue;
       }
 
-      if (e.type === "walker" || e.type === "flyer") {
+      // 滚壳兽在静止状态：碰一下就踢飞！
+      if (e.type === "shell_beast" && e.shellState === "shell_idle") {
+        if (this.checkAABB(p, e)) {
+          e.shellState = "shell_rolling";
+          e.vx = p.facing * 480;
+          p.vy = -300;
+          AudioSys.shellKick();
+          showFloatText(e.x, e.y - 20, "踢飞滚壳！", "#ffeaa7");
+          continue;
+        }
+      }
+
+      // 敌人碰撞与踩怪
+      if (e.type === "walker" || e.type === "flyer" || e.type === "shell_beast" || e.type === "spitter" || e.type === "scissor") {
         if (e.squashTimer > 0) continue;
         if (!this.checkAABB(p, e)) continue;
 
-        const isStomp = (vyIn > 60 || p.pounding) && (p.y + p.h) < (e.y + e.h * 0.72);
+        // 拟态机制：如果处于拟态模式，接触敌人直接吸灵变身！
+        if (p.power === "mimic") {
+          e.alive = false;
+          e.squashTimer = 0.01;
+          this.score += 500;
+          AudioSys.grow();
+          addParticles(e.x, e.y, 22, "#a29bfe", 170, 0.8, 4);
+
+          if (e.type === "spitter") {
+            p.power = "fire";
+            showFloatText(p.x, p.y - 30, "拟态成功：习得烈焰吐珠！", "#ff7675", 1.3);
+          } else if (e.type === "shell_beast") {
+            p.shieldHp = 2;
+            p.power = "wind";
+            showFloatText(p.x, p.y - 30, "拟态成功：获坚韧重壳与双翼飓风！", "#4fe3c1", 1.3);
+          } else {
+            p.shieldHp = 1;
+            p.power = "gulp";
+            showFloatText(p.x, p.y - 30, "拟态成功：护甲+1 并获大嘴吞噬神技！", "#ffd257", 1.3);
+          }
+          this.updateSkillBadge();
+          continue;
+        }
+
+        const isStomp = (vyIn > 60 || p.pounding) && (p.y + p.h) < (e.y + e.h * 0.72) && (e.type !== "scissor");
 
         if (p.star > 0 || p.pounding) {
-          // 无敌或下砸秒杀
           e.squashTimer = 0.001;
           e.alive = false;
           this.score += 300;
@@ -1890,16 +2328,32 @@ const Game = {
           addParticles(e.x, e.y, 16, "#ffd257", 190, 0.7, 4.5);
           AudioSys.stomp();
         } else if (isStomp) {
-          // 踩扁敌人
-          e.squashTimer = 0.32;
-          e.vx = 0;
-          p.vy = p.big ? -480 : -420; // 踩后弹跳
-          p.squash = -0.35;
-          p.stompGrace = 0.15;
-          this.score += 200;
-          showFloatText(e.x - 8, e.y - 25, "+200", "#9fe8ff");
-          addParticles(e.x, e.y + e.h / 2, 12, "#ffffff", 140, 0.5, 3.5);
-          AudioSys.stomp();
+          // 滚壳兽踩一下变成静止的壳
+          if (e.type === "shell_beast") {
+            if (e.shellState === "shell_rolling") {
+              e.shellState = "shell_idle";
+              e.vx = 0;
+            } else {
+              e.shellState = "shell_idle";
+              e.vx = 0;
+            }
+            p.vy = p.big ? -480 : -420;
+            p.squash = -0.35;
+            p.stompGrace = 0.15;
+            this.score += 200;
+            showFloatText(e.x - 8, e.y - 25, "缩成铁壳！可踢出！", "#ffeaa7");
+            AudioSys.stomp();
+          } else {
+            e.squashTimer = 0.32;
+            e.vx = 0;
+            p.vy = p.big ? -480 : -420;
+            p.squash = -0.35;
+            p.stompGrace = 0.15;
+            this.score += 200;
+            showFloatText(e.x - 8, e.y - 25, "+200", "#9fe8ff");
+            addParticles(e.x, e.y + e.h / 2, 12, "#ffffff", 140, 0.5, 3.5);
+            AudioSys.stomp();
+          }
           this.shake = Math.max(this.shake, 0.22);
         } else if (p.stompGrace <= 0) {
           this.hurtPlayer();
@@ -1912,6 +2366,10 @@ const Game = {
     const p = this.player;
     if (p.invuln > 0 || p.star > 0 || this.state !== "play") return;
 
+    if (p.shieldHp > 0) {
+      this.shrinkPlayer();
+      return;
+    }
     if (p.big) {
       this.shrinkPlayer();
       this.shake = 0.5;
@@ -1950,11 +2408,12 @@ const Game = {
 
     this.drawWorldTiles(c, T);
     this.drawPlatforms(c, T);
-    this.drawGoalFlag(c, T);
+    this.drawGoalCastle(c, T);
     this.drawDebrisAndParticles(c);
+    this.drawProjectiles(c);
     this.drawEntities(c);
 
-    if (this.state !== "title") {
+    if (this.state !== "title" && !this.player.hiddenInCastle) {
       this.drawPelicanRider(c);
     }
     this.drawFloatTexts(c);
@@ -1965,31 +2424,24 @@ const Game = {
     c.restore();
   },
 
-  /* ------------------------------ 背景天际与视差山脉 ------------------------------ */
   drawSky(c, T) {
     const g = c.createLinearGradient(0, 0, 0, VH);
     T.sky.forEach(([col, pos]) => g.addColorStop(pos, col));
     c.fillStyle = g;
     c.fillRect(0, 0, VW, VH);
 
-    // 太阳 / 洞窟柔光
     const sx = VW * 0.76 - this.camX * 0.02, sy = VH * 0.24;
     const rg = c.createRadialGradient(sx, sy, 5, sx, sy, 160);
     rg.addColorStop(0, T.sunGlow);
     rg.addColorStop(1, "rgba(0,0,0,0)");
     c.fillStyle = rg;
-    c.beginPath();
-    c.arc(sx, sy, 160, 0, 7);
-    c.fill();
+    c.beginPath(); c.arc(sx, sy, 160, 0, 7); c.fill();
 
     c.fillStyle = T.sun;
-    c.beginPath();
-    c.arc(sx, sy, 42, 0, 7);
-    c.fill();
+    c.beginPath(); c.arc(sx, sy, 42, 0, 7); c.fill();
   },
 
   drawParallaxScenery(c, T) {
-    // 漂浮云朵
     if (T.cloudN > 0) {
       c.fillStyle = T.cloudColor;
       for (let i = 0; i < T.cloudN; i++) {
@@ -2001,7 +2453,6 @@ const Game = {
       }
     }
 
-    // 视差多层山脉
     for (const layer of T.mountains) {
       c.fillStyle = layer.color;
       c.beginPath();
@@ -2031,7 +2482,7 @@ const Game = {
     c.fill();
   },
 
-  /* ------------------------------ 精美砖块与地形 ------------------------------ */
+  /* ------------------------------ 地图方块绘制 ------------------------------ */
   drawWorldTiles(c, T) {
     const x0 = Math.max(0, Math.floor(this.camX / TILE) - 1);
     const x1 = Math.min(this.currentLevel.w - 1, Math.floor((this.camX + VW) / TILE) + 1);
@@ -2039,7 +2490,7 @@ const Game = {
     for (let ty = 0; ty < ROWS; ty++) {
       for (let tx = x0; tx <= x1; tx++) {
         const t = this.currentLevel.tiles[ty][tx];
-        if (t === EMPTY) continue;
+        if (t === EMPTY || t === HIDDEN_BRICK) continue; // 隐藏砖块在撞前完全隐形！
 
         const bump = this.currentLevel.bumps.get(`${tx},${ty}`);
         let oy = 0;
@@ -2067,14 +2518,12 @@ const Game = {
           c.fillRect(px, py, 4, 3);
         }
         if (topOpen) {
-          // 生机盎然的草皮
           c.fillStyle = T.grass;
           c.fillRect(x, y, S, 10);
           c.fillStyle = T.grassHighlight;
           c.fillRect(x, y, S, 3);
           c.fillStyle = T.grassDark;
           c.fillRect(x, y + 8, S, 3);
-          // 嫩草尖
           c.fillStyle = T.grassHighlight;
           for (let i = 0; i < 3; i++) {
             c.fillRect(x + 3 + i * 10, y - 3, 2.5, 4);
@@ -2084,7 +2533,6 @@ const Game = {
       }
 
       case BRICK: {
-        // 立体质感砖块
         c.fillStyle = T.brick;
         c.fillRect(x, y, S, S);
         c.fillStyle = T.brickHi;
@@ -2104,7 +2552,6 @@ const Game = {
       }
 
       case QUESTION: {
-        // 全新精雕立体神秘黄金箱
         const pulse = 0.5 + 0.5 * Math.sin(this.stateTimer * 4 + tx);
         const g = c.createLinearGradient(x, y, x, y + S);
         g.addColorStop(0, "#ffe066");
@@ -2113,7 +2560,6 @@ const Game = {
         c.fillStyle = g;
         c.fillRect(x, y, S, S);
 
-        // 浮雕高光外边框
         c.fillStyle = "rgba(255, 255, 255, 0.75)";
         c.fillRect(x + 1, y + 1, S - 2, 2.5);
         c.fillRect(x + 1, y + 1, 2.5, S - 2);
@@ -2121,7 +2567,6 @@ const Game = {
         c.fillRect(x + 1, y + S - 3.5, S - 2, 2.5);
         c.fillRect(x + S - 3.5, y + 1, 2.5, S - 2);
 
-        // 四角金属铆钉
         c.fillStyle = "#8d4f00";
         [[3, 3], [S - 6, 3], [3, S - 6], [S - 6, S - 6]].forEach(([rx, ry]) => {
           c.fillRect(x + rx, y + ry, 3.5, 3.5);
@@ -2131,7 +2576,6 @@ const Game = {
           c.fillRect(x + rx, y + ry, 1.5, 1.5);
         });
 
-        // 动态金色流光扫过
         const gleamX = (this.stateTimer * 60 + tx * 30) % (S * 2) - 10;
         c.save();
         c.beginPath();
@@ -2147,21 +2591,17 @@ const Game = {
         c.fill();
         c.restore();
 
-        // 3D 浮雕问号 "?"
         c.font = "bold 20px 'Segoe UI', system-ui, sans-serif";
         c.textAlign = "center";
         c.textBaseline = "middle";
-        // 阴影
         c.fillStyle = "#633000";
         c.fillText("?", x + S / 2 + 1.5, y + S / 2 + 2);
-        // 主字
         c.fillStyle = "#ffffff";
         c.fillText("?", x + S / 2, y + S / 2 + 0.5);
         break;
       }
 
       case USED: {
-        // 已使用的暗黑古铜金属块
         c.fillStyle = "#7f8c8d";
         c.fillRect(x, y, S, S);
         c.fillStyle = "#95a5a6";
@@ -2240,17 +2680,19 @@ const Game = {
     }
   },
 
-  drawGoalFlag(c, T) {
+  /* ------------------------------ 终点旗杆与宏伟城堡 ------------------------------ */
+  drawGoalCastle(c, T) {
     const gx = this.currentLevel.goal.x, gy = this.currentLevel.goal.y;
     const drop = this.currentLevel.flagDrop || 0;
+    const castleX = this.currentLevel.castleX;
+    const C = T.castle;
 
-    // 旗杆基座
+    // 1. 旗杆基座与旗杆
     c.fillStyle = "#7f8c8d";
     c.fillRect(gx + 3, gy + 18, 14, 14);
     c.fillStyle = "#bdc3c7";
     c.fillRect(gx + 4, gy + 19, 12, 3);
 
-    // 金光灿灿的旗杆
     c.fillStyle = "#dcdde1";
     c.fillRect(gx + 8, gy - 160, 4, 180);
     c.fillStyle = "#ffd257";
@@ -2258,7 +2700,7 @@ const Game = {
     c.arc(gx + 10, gy - 164, 7, 0, 7);
     c.fill();
 
-    // 锦旗
+    // 旗杆上的落旗
     const fo = drop * 135;
     const wave = Math.sin(this.stateTimer * 6) * 6;
     const flagGrd = c.createLinearGradient(gx + 12, 0, gx + 60, 0);
@@ -2274,6 +2716,65 @@ const Game = {
     c.strokeStyle = "rgba(0,0,0,0.25)";
     c.lineWidth = 1.5;
     c.stroke();
+
+    // 2. 经典马里奥风格终点城堡 (End-of-Level Castle)
+    const cw = 110, ch = 115;
+    const cb = gy + 32; // 城堡贴地底部
+    const ct = cb - ch;
+
+    // 城堡主体城墙
+    c.fillStyle = C.wall;
+    c.fillRect(castleX, ct + 30, cw, ch - 30);
+    c.fillStyle = C.wallDark;
+    c.fillRect(castleX, cb - 6, cw, 6);
+
+    // 城垛 (Crenellations)
+    for (let i = 0; i < 5; i++) {
+      c.fillRect(castleX + 4 + i * 21, ct + 18, 12, 12);
+    }
+
+    // 左右两座卫塔
+    c.fillStyle = C.wallDark;
+    c.fillRect(castleX - 8, ct + 10, 22, ch - 10);
+    c.fillRect(castleX + cw - 14, ct + 10, 22, ch - 10);
+    // 卫塔尖顶
+    c.fillStyle = C.roof;
+    c.beginPath();
+    c.moveTo(castleX - 10, ct + 10);
+    c.lineTo(castleX + 3, ct - 16);
+    c.lineTo(castleX + 16, ct + 10);
+    c.closePath();
+    c.fill();
+    c.beginPath();
+    c.moveTo(castleX + cw - 16, ct + 10);
+    c.lineTo(castleX + cw - 3, ct - 16);
+    c.lineTo(castleX + cw + 10, ct + 10);
+    c.closePath();
+    c.fill();
+
+    // 城堡主城门 (进城拱门)
+    c.fillStyle = C.gate;
+    c.beginPath();
+    c.arc(castleX + cw / 2, cb - 36, 16, Math.PI, 0, false);
+    c.rect(castleX + cw / 2 - 16, cb - 36, 32, 36);
+    c.fill();
+    c.strokeStyle = "rgba(0,0,0,0.5)";
+    c.lineWidth = 2;
+    c.stroke();
+
+    // 城堡主塔楼上的胜利旗帜 (过关进门后升起)
+    const cFlagLift = (this.currentLevel.castleFlag || 0) * 22;
+    c.fillStyle = "#ffffff";
+    c.fillRect(castleX + cw / 2 - 1, ct + 14 - cFlagLift, 3, 24);
+    if (this.currentLevel.castleFlag > 0) {
+      c.fillStyle = "#2ecc71";
+      c.beginPath();
+      c.moveTo(castleX + cw / 2 + 2, ct + 14 - cFlagLift);
+      c.lineTo(castleX + cw / 2 + 20, ct + 20 - cFlagLift);
+      c.lineTo(castleX + cw / 2 + 2, ct + 26 - cFlagLift);
+      c.closePath();
+      c.fill();
+    }
   },
 
   /* ------------------------------ 实体与道具绘制 ------------------------------ */
@@ -2287,7 +2788,12 @@ const Game = {
       if (e.type === "coin") this.drawCoin(c, e.x, e.y, e.t);
       else if (e.type === "mush") this.drawSuperMushroom(c, e);
       else if (e.type === "star") this.drawSuperStar(c, e);
+      else if (e.type === "flower") this.drawSkillFlower(c, e);
+      else if (e.type === "mimic") this.drawMimicOrb(c, e);
       else if (e.type === "walker") this.drawWalkerEnemy(c, e);
+      else if (e.type === "shell_beast") this.drawShellBeast(c, e);
+      else if (e.type === "spitter") this.drawSpitterEnemy(c, e);
+      else if (e.type === "scissor") this.drawScissorPlant(c, e);
       else if (e.type === "flyer") this.drawFlyerEnemy(c, e);
     }
   },
@@ -2299,25 +2805,19 @@ const Game = {
     c.save();
     c.translate(x, y + bob);
     c.fillStyle = "rgba(0,0,0,0.2)";
-    c.beginPath();
-    c.ellipse(0, 16 - bob, 8, 3, 0, 0, 7);
-    c.fill();
+    c.beginPath(); c.ellipse(0, 16 - bob, 8, 3, 0, 0, 7); c.fill();
 
     const g = c.createLinearGradient(-w, -12, w, 12);
     g.addColorStop(0, "#fff5cc");
     g.addColorStop(0.5, "#f39c12");
     g.addColorStop(1, "#d35400");
     c.fillStyle = g;
-    c.beginPath();
-    c.ellipse(0, 0, w, 12, 0, 0, 7);
-    c.fill();
+    c.beginPath(); c.ellipse(0, 0, w, 12, 0, 0, 7); c.fill();
 
     if (w > 6) {
       c.strokeStyle = "rgba(255,255,255,0.7)";
       c.lineWidth = 1.5;
-      c.beginPath();
-      c.ellipse(0, 0, w - 3, 9, 0, 0, 7);
-      c.stroke();
+      c.beginPath(); c.ellipse(0, 0, w - 3, 9, 0, 0, 7); c.stroke();
     }
     c.restore();
   },
@@ -2327,32 +2827,21 @@ const Game = {
     c.save();
     c.translate(cx, cy);
 
-    // 菌柄
     c.fillStyle = "#fff8e7";
     c.strokeStyle = "#8b5a2b";
     c.lineWidth = 1.5;
-    c.beginPath();
-    c.roundRect(-7, 2, 14, 11, 4);
-    c.fill();
-    c.stroke();
+    c.beginPath(); c.roundRect(-7, 2, 14, 11, 4); c.fill(); c.stroke();
 
-    // 眼睛
     c.fillStyle = "#2c3e50";
     c.fillRect(-4, 5, 2.2, 4);
     c.fillRect(2, 5, 2.2, 4);
 
-    // 菌盖
     const g = c.createRadialGradient(-3, -7, 2, 0, -4, 16);
     g.addColorStop(0, "#ff7675");
     g.addColorStop(1, "#d63031");
     c.fillStyle = g;
-    c.beginPath();
-    c.arc(0, 2, 13, Math.PI, 0, false);
-    c.closePath();
-    c.fill();
-    c.stroke();
+    c.beginPath(); c.arc(0, 2, 13, Math.PI, 0, false); c.closePath(); c.fill(); c.stroke();
 
-    // 白斑
     c.fillStyle = "#ffffff";
     c.beginPath(); c.arc(0, -6, 3.5, 0, 7); c.fill();
     c.beginPath(); c.arc(-8, -2, 2.8, 0, 7); c.fill();
@@ -2379,9 +2868,60 @@ const Game = {
       const a = -Math.PI / 2 + i * Math.PI / 5;
       i ? c.lineTo(Math.cos(a) * r, Math.sin(a) * r) : c.moveTo(Math.cos(a) * r, Math.sin(a) * r);
     }
-    c.closePath();
-    c.fill();
+    c.closePath(); c.fill(); c.stroke();
+    c.restore();
+  },
+
+  // 奇迹技能花 (Skill Flower)
+  drawSkillFlower(c, e) {
+    const cx = Math.round(e.x) + 13, cy = Math.round(e.y) + 13;
+    c.save();
+    c.translate(cx, cy);
+
+    // 花茎与叶子
+    c.strokeStyle = "#27ae60";
+    c.lineWidth = 3;
+    c.beginPath(); c.moveTo(0, 4); c.lineTo(0, 13); c.stroke();
+    c.fillStyle = "#2ecc71";
+    c.beginPath(); c.ellipse(-5, 9, 4, 2, -0.4, 0, 7); c.fill();
+    c.beginPath(); c.ellipse(5, 9, 4, 2, 0.4, 0, 7); c.fill();
+
+    // 彩色花瓣
+    const colors = ["#ff7675", "#fdcb6e", "#00cec9", "#e84393"];
+    for (let i = 0; i < 4; i++) {
+      const angle = (i * Math.PI) / 2 + e.t * 2;
+      c.fillStyle = colors[i];
+      c.beginPath();
+      c.arc(Math.cos(angle) * 7, Math.sin(angle) * 7 - 2, 5.5, 0, 7);
+      c.fill();
+    }
+    // 花蕊
+    c.fillStyle = "#ffffff";
+    c.beginPath(); c.arc(0, -2, 4.5, 0, 7); c.fill();
+    c.fillStyle = "#2d3436";
+    c.fillRect(-2, -4, 1.5, 3); c.fillRect(1, -4, 1.5, 3);
+    c.restore();
+  },
+
+  // 拟态宝珠 (Mimic Chameleon Orb)
+  drawMimicOrb(c, e) {
+    const cx = Math.round(e.x) + 13, cy = Math.round(e.y) + 13;
+    c.save();
+    c.translate(cx, cy);
+    const pulse = 0.5 + 0.5 * Math.sin(e.t * 6);
+    const hue = (e.t * 120) % 360;
+
+    c.fillStyle = `hsla(${hue}, 90%, 65%, 0.85)`;
+    c.beginPath(); c.arc(0, 0, 12 + pulse * 2, 0, 7); c.fill();
+    c.strokeStyle = "#ffffff";
+    c.lineWidth = 2;
     c.stroke();
+
+    // 变色龙螺旋眼
+    c.fillStyle = "#ffffff";
+    c.beginPath(); c.arc(0, 0, 5, 0, 7); c.fill();
+    c.fillStyle = "#2c3e50";
+    c.beginPath(); c.arc(Math.cos(e.t * 4) * 2, Math.sin(e.t * 4) * 2, 2.5, 0, 7); c.fill();
     c.restore();
   },
 
@@ -2393,25 +2933,18 @@ const Game = {
     c.scale(1, squashed ? 0.35 : 1);
 
     const step = squashed ? 0 : Math.sin(e.anim) * 3;
-    // 小脚丫
     c.fillStyle = "#2d3436";
     c.beginPath(); c.ellipse(-7 + step, -3, 6, 3.5, 0, 0, 7); c.fill();
     c.beginPath(); c.ellipse(7 - step, -3, 6, 3.5, 0, 0, 7); c.fill();
 
-    // 身体 (栗子怪/小刺猬)
     const g = c.createRadialGradient(-3, -15, 2, 0, -12, 18);
     g.addColorStop(0, "#a29bfe");
     g.addColorStop(1, "#6c5ce7");
     c.fillStyle = g;
-    c.beginPath();
-    c.ellipse(0, -13, 13, 12, 0, 0, 7);
-    c.fill();
-    c.strokeStyle = "rgba(0,0,0,0.35)";
-    c.lineWidth = 1.5;
-    c.stroke();
+    c.beginPath(); c.ellipse(0, -13, 13, 12, 0, 0, 7); c.fill();
+    c.strokeStyle = "rgba(0,0,0,0.35)"; c.lineWidth = 1.5; c.stroke();
 
     if (!squashed) {
-      // 怒目圆睁的大眼睛
       c.fillStyle = "#ffffff";
       c.beginPath(); c.ellipse(-5, -15, 4, 4.5, 0, 0, 7); c.fill();
       c.beginPath(); c.ellipse(5, -15, 4, 4.5, 0, 0, 7); c.fill();
@@ -2419,14 +2952,130 @@ const Game = {
       c.fillStyle = "#2d3436";
       c.beginPath(); c.arc(-5 + look, -15, 2, 0, 7); c.fill();
       c.beginPath(); c.arc(5 + look, -15, 2, 0, 7); c.fill();
-      // 眉毛
-      c.strokeStyle = "#2d3436";
-      c.lineWidth = 2;
+      c.strokeStyle = "#2d3436"; c.lineWidth = 2;
       c.beginPath();
       c.moveTo(-9, -21); c.lineTo(-2, -18);
       c.moveTo(9, -21); c.lineTo(2, -18);
       c.stroke();
     }
+    c.restore();
+  },
+
+  // 缩壳可踢的滚壳甲兽 (Shell Beast)
+  drawShellBeast(c, e) {
+    const isRolling = e.shellState === "shell_rolling";
+    const isIdle = e.shellState === "shell_idle";
+    const bx = Math.round(e.x) + 14, by = Math.round(e.y) + 26;
+
+    c.save();
+    c.translate(bx, by);
+
+    if (isRolling || isIdle) {
+      // 缩入甲壳形态
+      if (isRolling) c.rotate(e.anim);
+      c.fillStyle = "#27ae60";
+      c.beginPath(); c.arc(0, -12, 13, 0, 7); c.fill();
+      c.strokeStyle = "#1e824c"; c.lineWidth = 2.5; c.stroke();
+      // 龟壳纹理
+      c.fillStyle = "#f1c40f";
+      for (let i = 0; i < 4; i++) {
+        const a = (i * Math.PI) / 2;
+        c.fillRect(Math.cos(a) * 5 - 2, Math.sin(a) * 5 - 14, 4, 4);
+      }
+    } else {
+      // 正常行走形态
+      const step = Math.sin(e.anim) * 3;
+      c.fillStyle = "#f39c12";
+      c.fillRect(-9 + step, -4, 6, 4);
+      c.fillRect(4 - step, -4, 6, 4);
+
+      // 背壳
+      c.fillStyle = "#2ecc71";
+      c.beginPath(); c.arc(0, -13, 12, Math.PI, 0, false); c.closePath(); c.fill();
+      c.strokeStyle = "#27ae60"; c.lineWidth = 2; c.stroke();
+
+      // 小脑袋
+      const headX = e.vx > 0 ? 8 : -8;
+      c.fillStyle = "#f1c40f";
+      c.beginPath(); c.arc(headX, -10, 6, 0, 7); c.fill();
+      c.fillStyle = "#2c3e50";
+      c.fillRect(headX + (e.vx > 0 ? 1 : -3), -12, 2, 3);
+    }
+    c.restore();
+  },
+
+  // 喷火怪 (Fire Spitter)
+  drawSpitterEnemy(c, e) {
+    const bx = Math.round(e.x) + 14, by = Math.round(e.y) + 26;
+    c.save();
+    c.translate(bx, by);
+    const dir = e.vx >= 0 ? 1 : -1;
+    c.scale(dir, 1);
+
+    // 烈焰红鳞身躯
+    c.fillStyle = "#e17055";
+    c.beginPath(); c.ellipse(-2, -12, 13, 11, 0, 0, 7); c.fill();
+    c.strokeStyle = "#d63031"; c.lineWidth = 1.8; c.stroke();
+
+    // 膨胀蓄火的大下巴
+    const puffFire = Math.max(0, 1 - e.spitTimer / 1.0);
+    c.fillStyle = puffFire > 0 ? "#ff7675" : "#fdcb6e";
+    c.beginPath(); c.arc(8, -8, 6 + puffFire * 4, 0, 7); c.fill();
+
+    // 凶猛眼眸
+    c.fillStyle = "#ffeaa7";
+    c.beginPath(); c.arc(6, -14, 3.5, 0, 7); c.fill();
+    c.fillStyle = "#d63031";
+    c.fillRect(7, -15, 2, 3);
+    c.restore();
+  },
+
+  // 管道剪刀怪 (Scissor Jaw Plant)
+  drawScissorPlant(c, e) {
+    if (e.scissorH <= 0) return;
+    c.save();
+    c.translate(e.x + 12, e.y);
+
+    // 咬合张开度
+    const snap = Math.abs(Math.sin(e.anim)) * 12;
+
+    // 绿色坚韧茎蔓
+    c.fillStyle = "#27ae60";
+    c.fillRect(-4, 0, 8, e.scissorH + 10);
+
+    // 上颚剪刀嘴
+    c.fillStyle = "#d63031";
+    c.beginPath();
+    c.moveTo(-12, -4 - snap);
+    c.lineTo(14, -14 - snap);
+    c.lineTo(0, 0);
+    c.closePath();
+    c.fill();
+    c.stroke();
+    // 尖锐牙齿
+    c.fillStyle = "#ffffff";
+    for (let i = 0; i < 3; i++) {
+      c.fillRect(-6 + i * 6, -2 - snap, 3, 4);
+    }
+
+    // 下颚剪刀嘴
+    c.fillStyle = "#d63031";
+    c.beginPath();
+    c.moveTo(-12, 4 + snap);
+    c.lineTo(14, 14 + snap);
+    c.lineTo(0, 0);
+    c.closePath();
+    c.fill();
+    c.stroke();
+    for (let i = 0; i < 3; i++) {
+      c.fillRect(-6 + i * 6, snap - 1, 3, 4);
+    }
+
+    // 凶恶白眼
+    c.fillStyle = "#ffffff";
+    c.beginPath(); c.arc(-5, -6 - snap / 2, 3, 0, 7); c.fill();
+    c.fillStyle = "#000000";
+    c.fillRect(-6, -7 - snap / 2, 2, 2);
     c.restore();
   },
 
@@ -2438,29 +3087,21 @@ const Game = {
     c.translate(bx, by);
     if (squashed) c.scale(1, 0.35);
 
-    // 拍打的翅膀
     c.fillStyle = "#ff7675";
     for (const s of [-1, 1]) {
       c.beginPath();
       c.moveTo(s * 4, -2);
       c.quadraticCurveTo(s * 25, -14 - flap * 14, s * 28, 6 + flap * 6);
       c.quadraticCurveTo(s * 15, 2, s * 4, 5);
-      c.closePath();
-      c.fill();
-      c.stroke();
+      c.closePath(); c.fill(); c.stroke();
     }
 
-    // 圆滚滚的飞天河豚身躯
     const g = c.createRadialGradient(-3, -4, 2, 0, 0, 16);
     g.addColorStop(0, "#fab1a0");
     g.addColorStop(1, "#e17055");
     c.fillStyle = g;
-    c.beginPath();
-    c.ellipse(0, 0, 13, 12, 0, 0, 7);
-    c.fill();
-    c.strokeStyle = "rgba(0,0,0,0.3)";
-    c.lineWidth = 1.5;
-    c.stroke();
+    c.beginPath(); c.ellipse(0, 0, 13, 12, 0, 0, 7); c.fill();
+    c.strokeStyle = "rgba(0,0,0,0.3)"; c.lineWidth = 1.5; c.stroke();
 
     if (!squashed) {
       c.fillStyle = "#ffffff";
@@ -2474,9 +3115,43 @@ const Game = {
     c.restore();
   },
 
+  /* ------------------------------ 投掷物绘制 ------------------------------ */
+  drawProjectiles(c) {
+    for (const p of projectiles) {
+      if (p.type === "player_fire" || p.type === "enemy_fire") {
+        c.save();
+        c.translate(p.x + p.w / 2, p.y + p.h / 2);
+        c.fillStyle = p.type === "player_fire" ? "#ff7675" : "#e17055";
+        c.beginPath(); c.arc(0, 0, 8, 0, 7); c.fill();
+        c.fillStyle = "#f1c40f";
+        c.beginPath(); c.arc(-2, -2, 4, 0, 7); c.fill();
+        c.restore();
+      } else if (p.type === "tornado") {
+        c.save();
+        c.translate(p.x, p.y);
+        c.strokeStyle = "rgba(255,255,255,0.75)";
+        c.lineWidth = 2.5;
+        for (let i = 0; i < 3; i++) {
+          const r = 8 + i * 5;
+          c.beginPath();
+          c.arc(0, i * 8, r, 0, Math.PI * 1.5);
+          c.stroke();
+        }
+        c.restore();
+      } else if (p.type === "spit_egg") {
+        c.save();
+        c.translate(p.x, p.y);
+        c.fillStyle = "#ffeaa7";
+        c.beginPath(); c.ellipse(0, 0, 11, 8, 0.4, 0, 7); c.fill();
+        c.strokeStyle = "#e17055"; c.lineWidth = 2; c.stroke();
+        c.restore();
+      }
+    }
+  },
+
   /* ---------------------------------------------------------------------
-     核心主角绘制：小探险家 Pip 骑着神勇大鹈鹕 (Riding Pelican)
-     包括：待机、走跑摆动、起跳扑翼、滑翔、空中下砸冲击、受击翻滚等全套动作
+     主角绘制：小探险家 Pip 骑着神勇大鹈鹕 (Riding Pelican)
+     新增：喉囊含怪膨胀特效、拟态防护罩光芒
      --------------------------------------------------------------------- */
   drawPelicanRider(c) {
     const p = this.player;
@@ -2494,12 +3169,9 @@ const Game = {
     c.translate(cx, by);
     c.scale(p.facing * sx, sy);
 
-    // 地面软阴影
     if (p.onGround) {
       c.fillStyle = "rgba(0, 0, 0, 0.22)";
-      c.beginPath();
-      c.ellipse(0, 1, 16, 5, 0, 0, 7);
-      c.fill();
+      c.beginPath(); c.ellipse(0, 1, 16, 5, 0, 0, 7); c.fill();
     }
 
     const isRunning = p.onGround && Math.abs(p.vx) > 15;
@@ -2508,19 +3180,16 @@ const Game = {
     const bob = isRunning ? Math.abs(Math.sin(p.animCycle)) * 3 : Math.sin(this.stateTimer * 3) * 1.5;
     const flap = inAir ? Math.sin(this.stateTimer * 16) : 0;
 
-    // 下砸状态身体前倾俯冲
     if (p.pounding) c.rotate(0.35);
 
-    /* --- 1. 鹈鹕大脚蹼 --- */
+    // 1. 脚蹼
     c.fillStyle = "#f39c12";
     c.strokeStyle = "#d35400";
     c.lineWidth = 1.2;
     if (inAir) {
-      // 空中时两只脚蹼向后收拢
       c.beginPath(); c.ellipse(-10, -4, 5, 3, 0.4, 0, 7); c.fill(); c.stroke();
       c.beginPath(); c.ellipse(-4, -5, 5, 3, 0.4, 0, 7); c.fill(); c.stroke();
     } else {
-      // 奔跑交替迈步
       c.beginPath(); c.ellipse(-8 + step * 4, -3, 6, 3.5, 0, 0, 7); c.fill(); c.stroke();
       c.beginPath(); c.ellipse(6 - step * 4, -3, 6, 3.5, 0, 0, 7); c.fill(); c.stroke();
     }
@@ -2528,227 +3197,159 @@ const Game = {
     c.save();
     c.translate(0, -bob);
 
-    /* --- 2. 鹈鹕丰满身躯 (羽毛与质感) --- */
+    // 2. 丰满身躯
     const bodyG = c.createRadialGradient(-4, -16, 3, 0, -14, 20);
     bodyG.addColorStop(0, "#ffffff");
     bodyG.addColorStop(0.7, "#ecf0f1");
-    bodyG.addColorStop(1, isBig ? "#f9e79f" : "#bdc3c7"); // 变大后金色辉光羽毛
+    bodyG.addColorStop(1, isBig ? "#f9e79f" : "#bdc3c7");
     c.fillStyle = bodyG;
-    c.beginPath();
-    c.ellipse(-3, -15, 14, 12, -0.15, 0, 7);
-    c.fill();
-    c.strokeStyle = "rgba(44, 62, 80, 0.3)";
-    c.lineWidth = 1.4;
-    c.stroke();
+    c.beginPath(); c.ellipse(-3, -15, 14, 12, -0.15, 0, 7); c.fill();
+    c.strokeStyle = "rgba(44, 62, 80, 0.3)"; c.lineWidth = 1.4; c.stroke();
 
-    // 翘起的小尾羽
+    // 翘尾羽
     c.fillStyle = "#ecf0f1";
     c.beginPath();
-    c.moveTo(-16, -17);
-    c.lineTo(-24, -22);
-    c.lineTo(-19, -13);
-    c.closePath();
-    c.fill();
-    c.stroke();
+    c.moveTo(-16, -17); c.lineTo(-24, -22); c.lineTo(-19, -13);
+    c.closePath(); c.fill(); c.stroke();
 
-    /* --- 3. 鹈鹕脖颈与头部 --- */
+    // 3. 脖颈与头部
     c.fillStyle = "#ffffff";
     c.beginPath();
     c.moveTo(5, -17);
-    c.quadraticCurveTo(11, -26, 8, -32); // 优美的 S 曲线颈项
+    c.quadraticCurveTo(11, -26, 8, -32);
     c.quadraticCurveTo(4, -33, 0, -28);
     c.lineTo(-1, -17);
-    c.closePath();
-    c.fill();
+    c.closePath(); c.fill();
 
-    // 圆滚滚的头部
-    c.beginPath();
-    c.arc(7, -32, 7.5, 0, 7);
-    c.fill();
-    c.stroke();
+    c.beginPath(); c.arc(7, -32, 7.5, 0, 7); c.fill(); c.stroke();
 
-    // 头部后方羽翎
-    c.fillStyle = isBig ? "#f1c40f" : "#ecf0f1";
-    c.beginPath();
-    c.moveTo(1, -34);
-    c.lineTo(-8, -37 + Math.sin(this.stateTimer * 6) * 2);
-    c.lineTo(1, -30);
-    c.closePath();
-    c.fill();
-
-    /* --- 4. 鹈鹕标志性标志：标志性大嘴与黄色喉囊 (Big Beak & Pouch) --- */
-    // 上喙（坚硬长钩喙）
+    // 4. 鹈鹕大嘴与大喉囊
     c.fillStyle = "#f39c12";
     c.beginPath();
-    c.moveTo(10, -35);
-    c.lineTo(28, -33);
-    c.quadraticCurveTo(30, -32, 28, -30);
-    c.lineTo(10, -30);
-    c.closePath();
-    c.fill();
-    c.strokeStyle = "#c0392b";
-    c.lineWidth = 1.2;
-    c.stroke();
+    c.moveTo(10, -35); c.lineTo(28, -33);
+    c.quadraticCurveTo(30, -32, 28, -30); c.lineTo(10, -30);
+    c.closePath(); c.fill();
+    c.strokeStyle = "#c0392b"; c.lineWidth = 1.2; c.stroke();
 
-    // 大嘴尖前端小钩
     c.fillStyle = "#d35400";
-    c.beginPath();
-    c.arc(28, -31.5, 1.8, 0, 7);
-    c.fill();
+    c.beginPath(); c.arc(28, -31.5, 1.8, 0, 7); c.fill();
 
-    // 巨大弹性大喉囊（跑动与跳跃时富有弹性惯性！）
-    const pouchWobble = Math.sin(p.animCycle * 1.5) * 2.2;
-    c.fillStyle = isBig ? "#ffaa00" : "#ffbe76";
+    // 喉囊膨胀特效：如果肚子里含着怪，大喉囊极度鼓起摇晃！
+    const hasMonster = !!p.swallowedEnemy;
+    const pouchWobble = Math.sin(p.animCycle * 1.5) * (hasMonster ? 5 : 2.2);
+    const extraPouchH = hasMonster ? 12 : (p.pouchInertia * 6);
+
+    c.fillStyle = hasMonster ? "#ff7675" : (isBig ? "#ffaa00" : "#ffbe76");
     c.beginPath();
     c.moveTo(11, -30);
     c.lineTo(27, -30);
-    c.quadraticCurveTo(22 + pouchWobble, -20, 9, -24);
+    c.quadraticCurveTo(22 + pouchWobble, -18 + extraPouchH, 9, -24);
     c.closePath();
     c.fill();
-    c.strokeStyle = "rgba(180, 80, 0, 0.45)";
-    c.lineWidth = 1.2;
-    c.stroke();
+    c.strokeStyle = "rgba(180, 80, 0, 0.45)"; c.lineWidth = 1.2; c.stroke();
 
-    // 鹈鹕可爱的眼睛
+    if (hasMonster) {
+      // 肚皮里含着怪的幽默眼睛
+      c.fillStyle = "#ffffff";
+      c.beginPath(); c.arc(18 + pouchWobble, -20 + extraPouchH / 2, 3, 0, 7); c.fill();
+      c.fillStyle = "#2d3436";
+      c.fillRect(17 + pouchWobble, -21 + extraPouchH / 2, 2, 2);
+    }
+
+    // 鹈鹕眼睛
     c.fillStyle = "#2c3e50";
     if (p.blinking) {
       c.fillRect(7, -34, 4, 1.5);
     } else {
-      c.beginPath();
-      c.arc(8, -33.5, 2.8, 0, 7);
-      c.fill();
+      c.beginPath(); c.arc(8, -33.5, 2.8, 0, 7); c.fill();
       c.fillStyle = "#ffffff";
-      c.beginPath();
-      c.arc(7.2, -34.5, 1.0, 0, 7);
-      c.fill();
+      c.beginPath(); c.arc(7.2, -34.5, 1.0, 0, 7); c.fill();
     }
 
-    /* --- 5. 鹈鹕大翅膀 (空中飞扑，地面收拢) --- */
+    // 5. 翅膀
     if (inAir) {
-      // 空中：伸展翅膀大幅拍打！
       c.fillStyle = isBig ? "#f9e79f" : "#ffffff";
-      c.strokeStyle = "rgba(44, 62, 80, 0.4)";
-      c.lineWidth = 1.4;
+      c.strokeStyle = "rgba(44, 62, 80, 0.4)"; c.lineWidth = 1.4;
       c.beginPath();
       c.moveTo(-6, -18);
       c.quadraticCurveTo(-14, -36 - flap * 12, 12, -26 + flap * 8);
       c.quadraticCurveTo(0, -12, -6, -18);
-      c.closePath();
-      c.fill();
-      c.stroke();
+      c.closePath(); c.fill(); c.stroke();
     } else {
-      // 地面：优雅折叠在体侧
       c.fillStyle = isBig ? "#fcf3cf" : "#ffffff";
-      c.strokeStyle = "rgba(44, 62, 80, 0.3)";
-      c.lineWidth = 1.4;
+      c.strokeStyle = "rgba(44, 62, 80, 0.3)"; c.lineWidth = 1.4;
       c.beginPath();
-      c.moveTo(-10, -22);
-      c.quadraticCurveTo(8, -26, 4, -14);
+      c.moveTo(-10, -22); c.quadraticCurveTo(8, -26, 4, -14);
       c.quadraticCurveTo(-5, -11, -10, -22);
-      c.closePath();
-      c.fill();
-      c.stroke();
+      c.closePath(); c.fill(); c.stroke();
     }
 
-    /* --- 6. 骑手鞍具与缰绳 --- */
+    // 6. 鞍具与缰绳
     c.fillStyle = "#795548";
-    c.beginPath();
-    c.roundRect(-8, -24, 11, 4, 2);
-    c.fill();
+    c.beginPath(); c.roundRect(-8, -24, 11, 4, 2); c.fill();
+    c.strokeStyle = "#8d6e63"; c.lineWidth = 1.3;
+    c.beginPath(); c.moveTo(11, -31); c.quadraticCurveTo(4, -22, 1, -26); c.stroke();
 
-    // 缰绳
-    c.strokeStyle = "#8d6e63";
-    c.lineWidth = 1.3;
-    c.beginPath();
-    c.moveTo(11, -31);
-    c.quadraticCurveTo(4, -22, 1, -26);
-    c.stroke();
-
-    /* --- 7. 骑在上面的小探险家 Pip --- */
-    // 双腿骑坐在鞍具两侧
+    // 7. 小探险家 Pip
     c.fillStyle = "#2980b9";
-    c.beginPath();
-    c.roundRect(-5, -22, 4.5, 7, 2);
-    c.fill();
+    c.beginPath(); c.roundRect(-5, -22, 4.5, 7, 2); c.fill();
 
-    // 探险家红色外衣
     c.fillStyle = isBig ? "#e74c3c" : "#ff5252";
-    c.beginPath();
-    c.ellipse(-2, -28, 6, 7, 0, 0, 7);
-    c.fill();
-    c.strokeStyle = "rgba(0,0,0,0.2)";
-    c.lineWidth = 1.2;
-    c.stroke();
+    c.beginPath(); c.ellipse(-2, -28, 6, 7, 0, 0, 7); c.fill();
+    c.strokeStyle = "rgba(0,0,0,0.2)"; c.lineWidth = 1.2; c.stroke();
 
-    // 双手握紧缰绳
     c.fillStyle = "#ffeaa7";
-    c.beginPath();
-    c.arc(2, -26, 2.5, 0, 7);
-    c.fill();
+    c.beginPath(); c.arc(2, -26, 2.5, 0, 7); c.fill();
 
-    // 飘扬的金色围巾（迎风飞舞）
     const scarfWave = Math.sin(this.stateTimer * 8) * 3 + (-p.vx * 0.04);
     c.fillStyle = "#f1c40f";
     c.beginPath();
     c.moveTo(-4, -30);
     c.quadraticCurveTo(-14 + scarfWave, -28, -22 + scarfWave * 1.5, -23);
     c.quadraticCurveTo(-12 + scarfWave, -25, -4, -28);
-    c.closePath();
-    c.fill();
+    c.closePath(); c.fill();
 
-    // Pip 的小圆脸
     c.fillStyle = "#ffeaa7";
-    c.beginPath();
-    c.arc(-1, -36, 6, 0, 7);
-    c.fill();
-    c.stroke();
+    c.beginPath(); c.arc(-1, -36, 6, 0, 7); c.fill(); c.stroke();
 
-    // 腮红
     c.fillStyle = "rgba(255, 107, 129, 0.55)";
     c.beginPath(); c.arc(-3, -34, 1.6, 0, 7); c.fill();
     c.beginPath(); c.arc(2, -34, 1.6, 0, 7); c.fill();
 
-    // Pip 的专注小眼睛
     c.fillStyle = "#2c3e50";
     c.beginPath(); c.arc(1.5, -36.5, 1.3, 0, 7); c.fill();
 
-    // 帅气的探险家小绿帽（变大后带金色羽毛徽章！）
     c.fillStyle = isBig ? "#27ae60" : "#2ecc71";
-    c.beginPath();
-    c.ellipse(-1, -41, 6.5, 4, 0, 0, 7);
-    c.fill();
-    // 帽檐
-    c.fillStyle = "#1e824c";
-    c.fillRect(-6, -40, 11, 2.5);
+    c.beginPath(); c.ellipse(-1, -41, 6.5, 4, 0, 0, 7); c.fill();
+    c.fillStyle = "#1e824c"; c.fillRect(-6, -40, 11, 2.5);
 
     if (isBig) {
-      // 变大骑士形态特有：金冠羽毛
       c.fillStyle = "#ffd257";
-      c.beginPath();
-      c.moveTo(1, -41);
-      c.lineTo(6, -49);
-      c.lineTo(3, -41);
-      c.closePath();
-      c.fill();
+      c.beginPath(); c.moveTo(1, -41); c.lineTo(6, -49); c.lineTo(3, -41); c.closePath(); c.fill();
     }
 
     c.restore(); // 还原 bob
-    c.restore(); // 还原整体位移与镜像
+    c.restore(); // 还原位移与缩放
 
-    // 无敌星彩虹光芒护盾
+    // 拟态护罩光环
+    if (p.power === "mimic" || p.shieldHp > 0) {
+      const hue = (this.stateTimer * 180) % 360;
+      c.strokeStyle = `hsla(${hue}, 100%, 70%, 0.8)`;
+      c.lineWidth = 3;
+      c.beginPath(); c.ellipse(cx, by - p.h / 2, p.w * 0.8, p.h * 0.7, 0, 0, 7); c.stroke();
+    }
+
+    // 无敌星彩虹辉光
     if (p.star > 0) {
       const hue = (this.stateTimer * 360) % 360;
       c.strokeStyle = `hsla(${hue}, 100%, 65%, 0.75)`;
-      c.lineWidth = 3.5;
-      c.beginPath();
-      c.ellipse(cx, by - p.h / 2, p.w * 0.75, p.h * 0.65, 0, 0, 7);
-      c.stroke();
+      c.lineWidth = 4;
+      c.beginPath(); c.ellipse(cx, by - p.h / 2, p.w * 0.85, p.h * 0.75, 0, 0, 7); c.stroke();
     }
   },
 
   /* ------------------------------ 粒子与碎片绘制 ------------------------------ */
   drawDebrisAndParticles(c) {
-    // 碎砖瓦砾
     for (const b of brickDebris) {
       c.save();
       c.translate(b.x, b.y);
@@ -2761,11 +3362,17 @@ const Game = {
       c.restore();
     }
 
-    // 细小火花与尘烟
     for (const p of particles) {
       c.globalAlpha = clamp(p.life / p.maxLife, 0, 1);
       c.fillStyle = p.color;
       c.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+    }
+
+    // 庆祝礼花
+    for (const fw of fireworks) {
+      c.globalAlpha = clamp(fw.life / fw.maxLife, 0, 1);
+      c.fillStyle = fw.color;
+      c.beginPath(); c.arc(fw.x, fw.y, fw.size, 0, 7); c.fill();
     }
     c.globalAlpha = 1;
   },
@@ -2777,7 +3384,7 @@ const Game = {
       c.globalAlpha = clamp(f.life / f.maxLife, 0, 1);
       c.font = `900 ${Math.round(15 * f.scale)}px 'Segoe UI', system-ui, sans-serif`;
       c.lineWidth = 3.5;
-      c.strokeStyle = "rgba(0,0,0,0.7)";
+      c.strokeStyle = "rgba(0,0,0,0.75)";
       c.strokeText(f.text, f.x, f.y);
       c.fillStyle = f.color;
       c.fillText(f.text, f.x, f.y);
@@ -2794,7 +3401,7 @@ const Game = {
   }
 };
 
-// 页面加载完成后启动
+// 页面加载就绪启动
 window.addEventListener("load", () => Game.init());
 
 </script>
